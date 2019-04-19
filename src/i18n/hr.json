@@ -1,0 +1,327 @@
+{
+  "auth": {
+    "login": {
+      "Acme": {},
+      "Login": {
+        "trnslr001": "Dobrodošli!",
+        "trnslr002": "Prijava",
+        "trnslr003": "Korisničko ime",
+        "trnslr004": "Šifra",
+        "trnslr005": "Greška prilikom konekcije na DB!",
+        "trnslr006": "Korisnik nije pronađen!",
+        "trnslr007": "Unijeli ste pogrešnu šifru!"
+      }
+    }
+  },
+  "dashboard": {
+    "data-visualisation-tab": {
+      "DataVisualisation": {
+        "trnslr001": "Statusi uzoraka",
+        "trnslr002": "Statusi rezultata",
+        "trnslr003": "Nema zaprimljenih uzoraka.",
+        "trnslr004": "Nema pristiglih rezultata.",
+        "trnslr005": "Zaprimljen",
+        "trnslr006": "U obradi",
+        "trnslr007": "Realizovan",
+        "trnslr008": "Obrađen",
+        "trnslr009": "Broj uzoraka",
+        "trnslr010": "Nema pristiglih rezultata.",
+        "trnslr011": "Nije odobren",
+        "trnslr012": "Odobren",
+        "trnslr013": "Broj uzoraka"
+      }
+    },
+    "features-tab": {
+      "FeaturesTab": {
+        "trnslr001": "Statusi uzoraka",
+        "trnslr002": "Nema zaprimljenih uzoraka.",
+        "trnslr003": "Zaprimljeno",
+        "trnslr004": "Obrađeno",
+        "trnslr005": "Pacijenata"
+      }
+    },
+    "Dashboard": {
+      "trnslr001": "Danas",
+      "trnslr002": "Zadnjih 30 dana"
+    },
+    "DashboardInfoWidgets": {
+      "trnslr001": "Danas zaprimljeno uzoraka",
+      "trnslr002": "Kompletirano uzoraka",
+      "trnslr003": "Kompletirano testova",
+      "trnslr004": "Korisnika",
+      "trnslr005": "Pacijenata"
+    }
+  },
+  "kontrole": {
+    "pregled": {
+      "detalji": {},
+      "Levey": {},
+      "Pregled": {}
+    },
+    "unos": {
+      "Unos": {}
+    }
+  },
+  "layout": {
+    "navbar": {
+      "Navbar": {
+        "trnslr001": "odobren",
+        "trnslr002": "realizovan",
+        "trnslr003": "Promijenite šifru",
+        "trnslr004": "Dodajte sliku",
+        "trnslr005": "Dodajte korisnika",
+        "trnslr006": "Uredite korisnike",
+        "trnslr007": "Moje postavke",
+        "trnslr008": "Odjava",
+        "trnslr009": "Build"
+      }
+    },
+    "sidebar": {
+      "Sidebar": {
+        "trnslr001": "Pregled",
+        "trnslr002": "Pacijenti",
+        "trnslr003": "Unos",
+        "trnslr004": "Pregled",
+        "trnslr038": "Prijem",
+        "trnslr005": "Uzorci",
+        "trnslr006": "Unos",
+        "trnslr007": "Pregled",
+        "trnslr008": "Rezultati",
+        "trnslr009": "Pregled",
+        "trnslr010": "Verifikacija",
+        "trnslr011": "Nalazi",
+        "trnslr012": "Pregled",
+        "trnslr013": "Verifikacija",
+        "trnslr014": "Odlazna pošta",
+        "trnslr015": "Kontrole",
+        "trnslr016": "Unos",
+        "trnslr017": "Pregled",
+        "trnslr018": "Levey - J",
+        "trnslr019": "Izvještaji",
+        "trnslr020": "Opšte postavke",
+        "trnslr021": "Lokacije",
+        "trnslr022": "Doktori",        
+        "trnslr023": "Sekcije",
+        "trnslr024": "Generalno",
+        "trnslr025": "Paneli",
+        "trnslr026": "Sites",
+        "trnslr027": "Definicija testova",
+        "trnslr028": "Laboratorijski testovi",
+        "trnslr029": "Ručni testovi",
+        "trnslr030": "Kalkulisani testovi",
+        "trnslr031": "Postavke aparata",
+        "trnslr032": "Aparati",
+        "trnslr033": "Testovi aparata",
+        "trnslr034": "Definicija kontrola",
+        "trnslr035": "Pomoć",
+        "trnslr036": "Mjesta",
+        "trnslr037": "Predračun"
+      }
+    },
+    "AuthLayout": {},
+    "Layout": {}
+  },
+  "nalaz": {},
+  "nalazi": {},
+  "pacijenti": {
+    "pregled": {
+      "detalji": {
+        "trnslr001": "Jmbg",
+        "trnslr002": "Ime",
+        "trnslr003": "Prezime",
+        "trnslr004": "Spol",
+        "trnslr005": "Pušač",
+        "trnslr006": "Dijabetes",
+        "trnslr007": "Telefon",
+        "trnslr008": "Email",
+        "trnslr009": "Uredi",
+        "__comment": "Ne prevoditi...",
+        "trnslr010": "MUŠKI",
+        "trnslr011": "ŽENSKI",
+        "trnslr012": "DA",
+        "trnslr013": "NE",
+        "comment__": "...Kraj",
+        "trnslr014": "Uredite podatke o pacijentu",
+        "trnslr015": "Sačuvajte izmjene",
+        "trnslr016": "Nazad",
+        "trnslr017": "Pregled detalja za pacijenta:",
+        "trnslr018": "Vrijednost polja je obavezna!",
+        "trnslr019": "JMBG mora biti validan 13 cifreni broj!",
+        "trnslr020": "Email adresa nije validna!",
+        "trnslr021": "Telefonski broj nije validan!",
+        "trnslr022": "Spol može biti MUŠKI ili ŽENSKI!",
+        "trnslr023": "Vrijednost polja PUŠAČ može biti DA ili NE!",
+        "trnslr024": "Vrijednost polja DIJABETES može biti DA ili NE!",
+        "trnslr025": "Pacijent sa unesenim JMBG, već postoji u sistemu!",
+        "trnslr026": "Greška prilikom upisa!",
+        "trnslr027": "Unos uspješno obavljen!",
+        "trnslr028": "Mjesto stanovanja"
+      },
+      "PregledPacijenta": {
+        "trnslr001": "Pretraga svih pacijenata"
+      },
+      "fields-definition": {
+        "trnslr001": "ime",
+        "trnslr002": "prezime",
+        "trnslr007": "prijem",
+        "trnslr003": "uzorak",
+        "trnslr004": "jmbg",
+        "trnslr005": "spol",
+        "trnslr006": "akcija"
+      }
+    },
+    "unos": {
+      "UnosPacijenta": {
+        "trnslr001": "Unos pacijenata",
+        "trnslr002": "Unesite JMBG pacijenta",
+        "trnslr003": "Unesite ime pacijenta",
+        "trnslr004": "Unesite prezime pacijenta",
+        "trnslr005": "Izaberite spol pacijenta",
+        "trnslr006": "Konzumira duhan",
+        "trnslr007": "Dijabetes",
+        "trnslr008": "Unesite kontakt telefon",
+        "trnslr009": "Unesite Email adresu",
+        "trnslr010": "Sačuvaj",
+        "trnslr011": "Polja JMBG, Ime, Prezime i Spol su obavezna!",
+        "trnslr012": "JMBG mora biti validan 13 cifreni broj!",
+        "trnslr013": "Email adresa nije validna!",
+        "trnslr014": "Telefonski broj nije validan!",
+        "trnslr015": "Pacijent već postoji!",
+        "trnslr016": "Greška prilikom upisa!",
+        "trnslr017": "Unos uspješno obavljen!",
+        "trnslr018": "Mjesto stanovanja pacijenta"
+      }
+    }
+  },
+  "pomoc": {
+    "Pomoc": {
+      "trnslr001": "Pomoć pri korištenju aplikacije",
+        "trnslr002": "Prijava incidenta",
+        "trnslr003": "Pregled incidenata",
+        "trnslr004": "Zahtjev za nadogradnjom",
+        "trnslr005": "Pregled zahtjeva",
+        "trnslr006": "Kontakt",
+        "trnslr007": "Korisnik",
+        "trnslr008": "Vrijeme",
+        "trnslr009": "Unesite naziv",
+        "trnslr010": "Izaberite prioritet",
+        "trnslr011": "Opišite incident",
+        "trnslr012": "Izaberite lokaciju",
+        "trnslr013": "Izaberite status",
+        "trnslr014": "Naziv",
+        "trnslr015": "Prioritet",
+        "trnslr016": "Status",
+        "trnslr017": "Nema dostupnih podataka.",
+        "trnslr018": "Unesite zahtjev",
+        "trnslr019": "Kontaktirajte nas",
+        "trnslr020": "Primalac",
+        "trnslr021": "Unesite kontakt telefon",
+        "trnslr022": "Unesite poruku",
+        "trnslr023": "AP Solutions d.o.o.",
+        "trnslr024": "Opišite incident!",
+        "trnslr025": "Unesite naziv!",
+        "trnslr026": "Greška prilikom upisa!",
+        "trnslr027": "Unos uspješno obavljen!",
+        "trnslr028": "Unesite zahtjev!",
+        "trnslr029": "Unesite naziv!",
+        "trnslr030": "Greška prilikom upisa!",
+        "trnslr031": "Uredite podatke",
+        "trnslr032": "Unesite telefonski broj!",
+        "trnslr033": "Telefonski broj nije validan!", 
+        "trnslr034": "Greška prilikom slanja poruke!", 
+        "trnslr035": "Poruka uspješno poslana!", 
+        "trnslr036": "Izbornik",
+        "trnslr037": "Sačuvajte izmjene",
+        "trnslr038": "Sačuvaj",
+        "trnslr039": "Pošalji", 
+        "trnslr040": "Unesite poruku!",
+        "trnslr041": "Uredi"    
+    }
+  },
+  "postavke": {
+    "user": {
+      "chpwd": {
+        "trnslr001": "Promjena šifre",
+        "trnslr002": "Unesite trenutnu šifru",
+        "trnslr003": "Unesite novu šifru",
+        "trnslr004": "Potvrdite novu šifru",
+        "trnslr005": "Sačuvaj",
+        "trnslr006": "Sva polja su obavezna!",
+        "trnslr007": "Šifra nije validna!",
+        "trnslr008": "Nova šifra nije validirana!",
+        "trnslr009": "Greška prilikom upisa!",
+        "trnslr010": "Trenutna šifra nije ispravna!",
+        "trnslr011": "Izmjena uspješno obavljena!"
+      },
+      "avatar": {
+        "trnslr001": "Izmjena slike",
+        "trnslr002": "Dodavanje slike",
+        "trnslr003": "Izaberi",
+        "trnslr004": "Sačuvaj",
+        "trnslr005": "Greška prilikom izmjene!",
+        "trnslr006": "Izmjena uspješno obavljena!"
+      },
+      "newUser": {
+        "trnslr001": "Dodavanje korisnika",
+        "trnslr002": "Unesite ime",
+        "trnslr003": "Unesite prezime",
+        "trnslr004": "Unesite korisničko ime",
+        "trnslr005": "Unesite šifru",
+        "trnslr006": "Vrsta korisničkog računa",
+        "trnslr007": "Izaberite sajtove",
+        "trnslr008": "Sajt korisnika",
+        "trnslr009": "Sačuvaj",
+        "trnslr010": "Korisničko ime nije validno!",
+        "trnslr011": "Sva polja su obavezna!",
+        "trnslr012": "Šifra nije validna!",
+        "trnslr013": "Greška prilikom upisa!",
+        "trnslr014": "Unos uspješno obavljen!",
+        "trnslr015": "Korisnik već postoji!"
+      },
+      "edit": {
+        "trnslr001": "Uređivanje korisnika",
+        "trnslr002": "Ime",
+        "trnslr003": "Prezime",
+        "trnslr004": "Email",
+        "trnslr005": "Uloga",
+        "trnslr006": "Uredi",
+        "trnslr007": "Akcija",
+        "trnslr008": "Uredite podatke",
+        "trnslr009": "Sačuvajte izmjene",
+        "trnslr010": "Greška prilikom upisa!",
+        "trnslr011": "Izmjena uspješno obavljena!",
+        "trnslr012": "Jeste li sigurni da želite obrisati zapis?",
+        "trnslr013": "Da",
+        "trnslr014": "Greška prilikom brisanja!",
+        "trnslr015": "Zapis uspješno obrisan!",
+        "trnslr016": "Brisanje zapisa",
+        "trnslr017": "Izbriši",
+        "trnslr018": "Unesite \"Da\" za nastavak",
+        "trnslr019": "Odustani",
+        "trnslr020": "Nastavi"
+      },
+      "settings": {
+        "trnslr001": "Postavke prikaza",
+        "trnslr002": "Kartični prikaz rezultata testova",
+        "trnslr003": "Postavke jezika",
+        "trnslr004": "Bosanski jezik",
+        "trnslr005": "Hrvatski jezik",
+        "trnslr006": "Srpski jezik",
+        "trnslr007": "Engleski jezik",
+        "trnslr008": "Greška prilikom upisa!",
+        "trnslr009": "Izmjena uspješno obavljena!",
+        "trnslr010": "10 minuta",
+        "trnslr011": "30 minuta",
+        "trnslr012": "120 minuta",
+        "trnslr013": "480 minuta",
+        "trnslr014": "Automatska odjava u slučaju neaktivnosti"
+      }
+    }
+  },
+  "reports": {},
+  "rezultati": {},
+  "uzorci": {},
+  "vuestic-components": {
+    "trnslr001": "Pretraga"
+  }
+}

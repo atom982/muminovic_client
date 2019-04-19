@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <title>ATOM | Lab Software</title>
+  </head>
+  <script type="text/javascript" src="/static/rsvp-3.1.0.min.js"></script>
+  <script type="text/javascript" src="/static/sha-256.min.js"></script>
+  <script type="text/javascript" src="/static/qz-tray.js"></script>
+  <script type="text/javascript" src="/static/request-cert.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <body>
+    <div id="app"></div>
+
+    <!-- built files will be auto injected -->
+  </body>
+
+  <script>
+    qz.security.setCertificatePromise(function(resolve, reject) {
+      $.ajax({
+        url: cert,
+        cache: false,
+        dataType: "text"
+      }).then(resolve, reject);
+    });
+
+    qz.security.setSignaturePromise(function(toSign) {
+      return function(resolve, reject) {
+        $.ajax(
+          request + toSign
+        ).then(resolve, reject);
+      };
+    });
+    qz.websocket.connect().then(function() {});
+
+    function printEPL(
+      ime,
+      sid,
+      rbr,
+      godiste,
+      datum,
+      link,
+      code,
+      site,
+      response,
+      samplesList
+    ) {
+      // Patient ID label printing
+      // if (response != undefined && samplesList != undefined) { 
+
+      //   var mjesec = new Date(response.created_at).getMonth() + 1;
+      //   if (mjesec < 10) {
+      //     mjesec = "0" + mjesec;
+      //   }
+
+      //   var obj = {}
+
+      //   obj.pid = response.pid;
+      //   obj.pacijent = response.patient;
+      //   obj.spol = response.spol[0].toUpperCase() + response.spol.slice(1).toLowerCase();
+      //   obj.rodjen = response.jmbg.substring(0, 2) + "." + response.jmbg.substring(2, 4) + "." + response.godiste;
+      //   obj.prijemd = new Date(response.created_at).toDateString().substring(8, 10) + "." + mjesec + "." + new Date(response.created_at).toDateString().substring(11, 15);
+      //   obj.prijemt = new Date(response.created_at).toTimeString().substring(0, 5);
+      //   obj.samples = samplesList; 
+
+      //   // console.log(obj);
+
+      //   var labelwidth = 50;
+      //   var labelheight = 25;
+      //   var smallq = "320";
+      //   var bigQ = "200,24";
+      //   var xDiff = 10;
+      //   var yDiff = 10;
+      //   var printer = "";
+
+      //   if(site === "5bd40c16020d6d21bbaf610c"){ // PZU Muminović, $store.state.site: 5bd40c16020d6d21bbaf610c
+      //     var secondprinter = "\\\laboratorija-pc\\Zebra";
+      //   } else{
+      //     var secondprinter = "";
+      //   }
+
+      //   obj.samples = obj.samples.sort(function(a, b) {
+      //     return a.localeCompare(b, undefined, {
+      //       numeric: true,
+      //       sensitivity: "base"
+      //     });
+      //   });
+
+      //   switch (obj.samples.length) {
+      //     case 1: 
+      //       var smpl1 = 'A18,105,0,2,1,1,N,"' + obj.samples[0] +'"\n'
+      //       var smpl2 = 'A18,130,0,2,1,1,N,""\n'
+      //       var smpl3 = 'A18,155,0,2,1,1,N,""\n' 
+      //     break;
+      //     case 2:          
+      //       var smpl1 = 'A18,105,0,2,1,1,N,"' + obj.samples[0] + ',' + obj.samples[1] + '"\n'
+      //       var smpl2 = 'A18,130,0,2,1,1,N,""\n'
+      //       var smpl3 = 'A18,155,0,2,1,1,N,""\n'
+      //     break;
+      //     case 3: 
+      //       var smpl1 = 'A18,105,0,2,1,1,N,"' + obj.samples[0] + ',' + obj.samples[1] + '"\n'
+      //       var smpl2 = 'A18,130,0,2,1,1,N,"' + obj.samples[2] + '"\n'
+      //       var smpl3 = 'A18,155,0,2,1,1,N,""\n'
+      //     break;
+      //     case 4: 
+      //       var smpl1 = 'A18,105,0,2,1,1,N,"' + obj.samples[0] + ',' + obj.samples[1] + '"\n'
+      //       var smpl2 = 'A18,130,0,2,1,1,N,"' + obj.samples[2] + ',' + obj.samples[3] + '"\n'
+      //       var smpl3 = 'A18,155,0,2,1,1,N,""\n'
+      //     break;
+      //     case 5: 
+      //       var smpl1 = 'A18,105,0,2,1,1,N,"' + obj.samples[0] + ',' + obj.samples[1] + '"\n'
+      //       var smpl2 = 'A18,130,0,2,1,1,N,"' + obj.samples[2] + ',' + obj.samples[3] + '"\n'
+      //       var smpl3 = 'A18,155,0,2,1,1,N,"' + obj.samples[4] + '"\n'
+      //     break;
+      //     case 6: 
+      //       var smpl1 = 'A18,105,0,2,1,1,N,"' + obj.samples[0] + ',' + obj.samples[1] + '"\n'
+      //       var smpl2 = 'A18,130,0,2,1,1,N,"' + obj.samples[2] + ',' + obj.samples[3] + '"\n'
+      //       var smpl3 = 'A18,155,0,2,1,1,N,"' + obj.samples[4] + ',' + obj.samples[5] + '"\n'
+      //     break;
+
+      //     default:
+      //       var smpl1 = 'A18,105,0,2,1,1,N,"' + obj.samples[0] + ',' + obj.samples[1] + '"\n'
+      //       var smpl2 = 'A18,130,0,2,1,1,N,"' + obj.samples[2] + ',' + obj.samples[3] + '"\n'
+      //       var smpl3 = 'A18,155,0,2,1,1,N,"' + obj.samples[4] + ',' + obj.samples[5] + '"\n'
+      //     break;
+      //   }
+                
+      //   qz.printers
+      //     .find()
+      //     .then(function(data) {
+      //       var list = [];
+      //       for (var i = 0; i < data.length; i++) {
+      //         list.push(data[i]);
+      //       }
+      //       list.forEach(element => {
+      //         if (element === "Zebra") {
+      //           printer = "Zebra";
+      //         }
+      //       });
+          
+
+      //       if (printer === "Zebra") {              
+      //         var config = qz.configs.create(printer, {
+      //           size: {
+      //             width: labelwidth,
+      //             height: labelheight
+      //           },
+      //           units: "mm"
+               
+      //         });
+      //         qz.print(config, [
+      //           "\nN\n",
+      //           "q" + smallq + "\n",
+      //           "Q" + bigQ + "\n", 
+      //           'A18,0,0,2,1,1,N,"' + obj.pid + '.' + obj.pacijent + '"\n',
+      //           'A18,25,0,1,1,1,N,"' + 'Datum rođenja: ' + obj.rodjen + '"\n',
+      //           'A18,50,0,1,1,1,N,"' + 'Zaprimljen: ' + obj.prijemd + ',' + obj.prijemt + '"\n',
+      //           "X18,66,1,300,66\n",
+      //           'A18,80,0,2,1,1,N,"' + 'Uzorci: ' + '"\n',    
+      //           smpl1,
+      //           smpl2,
+      //           smpl3,                
+      //           "\nP1,1\n"
+      //         ]).catch(function(e) {
+      //           console.error(e);
+      //         });
+      //       } else {
+      //         console.warn("Zebra printer NOT found");  
+      //         var config = qz.configs.create(printer, {
+      //           size: {
+      //             width: labelwidth,
+      //             height: labelheight
+      //           },
+      //           units: "mm"
+               
+      //         });
+      //         qz.print(config, [
+      //           "\nN\n",
+      //           "q" + smallq + "\n",
+      //           "Q" + bigQ + "\n", 
+      //           'A18,0,0,2,1,1,N,"' + obj.pid + '.' + obj.pacijent + '"\n',
+      //           'A18,25,0,1,1,1,N,"' + 'Datum rođenja: ' + obj.rodjen + '"\n',
+      //           'A18,50,0,1,1,1,N,"' + 'Zaprimljen: ' + obj.prijemd + ',' + obj.prijemt + '"\n',
+      //           "X18,66,1,300,66\n",
+      //           'A18,80,0,2,1,1,N,"' + 'Uzorci: ' + '"\n',    
+      //           smpl1,
+      //           smpl2,
+      //           smpl3,                
+      //           "\nP1,1\n"
+      //         ]).catch(function(e) {
+      //           console.error(e);
+      //         });      
+      //       }
+      //     })
+      //     .catch(function(e) {
+      //       console.error(e);
+      //     });      
+          // Samples label printing  
+      // } else { 
+
+        var date = datum.slice(0, 8) + " " + datum.slice(-5);
+
+        var labelwidth = 50;
+        var labelheight = 25;
+        var smallq = "320";
+        var bigQ = "200,24";
+        var xDiff = 10;
+        var yDiff = 10;
+        var printer = "";
+        var secondprinter = "";
+
+        switch (site) {
+          case "5b6caf696a0f4166f4da989b": // Čarovac Lab, $store.state.site: 5b6caf696a0f4166f4da989b
+            ime = ime.replace(/Ć/g, "C");
+            ime = ime.replace(/Č/g, "C");
+            // ime = ime.replace(/Š/g,'S')
+            ime = ime.replace(/Đ/g, "D");
+            //ime = ime.replace(/Ž/g,'Z')
+            ime = ime.replace(/č/g, "c");
+            ime = ime.replace(/ć/g, "c");
+            // ime = ime.replace(/š/g,'s')
+            ime = ime.replace(/đ/g, "d");
+            // ime = ime.replace(/ž/g,'z')
+
+            labelwidth = 40;
+            labelheight = 30;
+            smallq = "320";
+            bigQ = "260,24";
+            xDiff = 10;
+            yDiff = 22;
+
+            break;
+          case "5bc71402bf21a379083d6e07": // Med Lab, $store.state.site: 5bc71402bf21a379083d6e07
+            labelwidth = 50;
+            labelheight = 25;
+            smallq = "320";
+            bigQ = "200,24";
+            xDiff = 10;
+            yDiff = 10;
+
+            break;
+          case "5bd40c16020d6d21bbaf610c": // PZU Muminović, $store.state.site: 5bd40c16020d6d21bbaf610c
+            labelwidth = 50;
+            labelheight = 25;
+            smallq = "320";
+            bigQ = "200,24";
+            xDiff = 10;
+            yDiff = 10;
+            secondprinter = "\\\laboratorija-pc\\Zebra";
+            break;
+
+          default:
+            labelwidth = 50;
+            labelheight = 25;
+            smallq = "320";
+            bigQ = "200,24";
+            xDiff = 10;
+            yDiff = 10;
+
+            break;
+        }
+
+        qz.printers
+          .find()
+          .then(function(data) {
+            var list = [];
+            for (var i = 0; i < data.length; i++) {
+              list.push(data[i]);
+            }
+            list.forEach(element => {
+              if (element === "Zebra") {
+                printer = "Zebra";
+              }
+            });
+            var str1 = "";
+
+            if (rbr.length < 3) {
+              str1 = 'A25,20,0,2,1,1,N,"' + godiste + " P " + rbr + '"\n';
+            } else {
+              str1 = 'A25,20,0,2,1,1,N,"' + godiste + " P" + rbr + '"\n';
+            }
+
+            if (printer === "Zebra") {
+              console.warn("Zebra printer found");
+              var config = qz.configs.create(printer, {
+                size: {
+                  width: labelwidth,
+                  height: labelheight
+                },
+                units: "mm"
+                // colorType: 'grayscale',
+                // interpolation: "nearest-neighbor"
+              });
+              qz.print(config, [
+                "\nN\n",
+                "q" + smallq + "\n",
+                "Q" + bigQ + "\n",
+                "I8,B\n",
+
+                {
+                  type: "raw",
+                  format: "image",
+                  data: link,
+                  options: {
+                    language: "EPL",
+                    x: xDiff,
+                    y: yDiff
+                  }
+                },
+
+                'A25,0,0,2,1,1,N,"' + ime + '"\n',
+                str1,
+                'A145,20,0,2,1,1,N,"' + date + '"\n',
+                'A27,40,0,2,1,1,N,"' + code + '"\n',
+                "X77,37,2,77,17\n",
+                "X140,37,2,140,17\n",
+                "X248,37,2,248,17\n",
+                "X25,37,1,310,37\n",
+
+                "\nP1,1\n"
+              ]).catch(function(e) {
+                console.error(e);
+              });
+            } else {
+              console.warn("Zebra printer NOT found");
+              var config = qz.configs.create(secondprinter, {
+                size: {
+                  width: labelwidth,
+                  height: labelheight
+                },
+                units: "mm"
+                // colorType: 'grayscale',
+                // interpolation: "nearest-neighbor"
+              });
+              qz.print(config, [
+                "\nN\n",
+                "q" + smallq + "\n",
+                "Q" + bigQ + "\n",
+                "I8,B\n",
+
+                {
+                  type: "raw",
+                  format: "image",
+                  data: link,
+                  options: {
+                    language: "EPL",
+                    x: xDiff,
+                    y: yDiff
+                  }
+                },
+
+                'A25,0,0,2,1,1,N,"' + ime + '"\n',
+                str1,
+                'A145,20,0,2,1,1,N,"' + date + '"\n',
+                'A27,40,0,2,1,1,N,"' + code + '"\n',
+                "X77,37,2,77,17\n",
+                "X140,37,2,140,17\n",
+                "X248,37,2,248,17\n",
+                "X25,37,1,310,37\n",
+
+                "\nP1,1\n"
+              ]).catch(function(e) {
+                console.error(e);
+              });
+            }
+          })
+          .catch(function(e) {
+            console.error(e);
+          });
+      // }
+    }
+  </script>
+</html>

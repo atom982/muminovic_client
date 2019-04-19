@@ -1,0 +1,91 @@
+// Toasts
+
+.toasted-container.sample-toasted-container {
+  position: static;
+  transform: translateX(0);
+  .toasted {
+    position: static;
+    transform: translateY(0);
+  }
+}
+
+.toasted-container {
+  &.full-width {
+    max-width: 100%;
+    width: calc(100% - #{$layout-padding} - #{$layout-padding-right});
+    transform: translateX(0);
+    left: 0;
+    .toasted.vuestic-toast {
+      max-width: 100%;
+      width: 100%;
+      left: $layout-padding;
+      justify-content: normal;
+    }
+  }
+}
+
+.toasted.vuestic-toast-primary {
+  min-height: $toast-min-height;
+  padding: $toast-padding-y $toast-padding-x;
+  font-size: $toast-font-size;
+  font-weight: $toast-font-weight;
+  line-height: $toast-line-height;
+  background: rgba($toast-bg, 0.9);
+  box-shadow: $toast-box-shadow;
+  color: $toast-color;
+  border-radius: $toast-border-radius;
+  i,
+  i.fa {
+    font-size: $toast-icon-size;
+    color: $toast-icon-color;
+    margin-left: $toast-icon-ml;
+    margin-right: $toast-icon-mr;
+  }
+  a.action:hover {
+    text-decoration: none;
+  }
+}
+
+.toasted.vuestic-toast-warning {
+  min-height: $toast-min-height;
+  padding: $toast-padding-y $toast-padding-x;
+  font-size: $toast-font-size;
+  font-weight: $toast-font-weight;
+  line-height: $toast-line-height;
+  background: rgba($toast-bg, 0.9);
+  box-shadow: 0 4px 9.6px 0.4px rgba(#f7cc36, .5);
+  color: $toast-color;
+  border-radius: $toast-border-radius;
+  i,
+  i.fa {
+    font-size: $toast-icon-size;
+    color: #f7cc36;
+    margin-left: $toast-icon-ml;
+    margin-right: $toast-icon-mr;
+  }
+  a.action:hover {
+    text-decoration: none;
+  }
+}
+
+.toasted.vuestic-toast-danger {
+  min-height: $toast-min-height;
+  padding: $toast-padding-y $toast-padding-x;
+  font-size: $toast-font-size;
+  font-weight: $toast-font-weight;
+  line-height: $toast-line-height;
+  background: rgba($toast-bg, 0.9);
+  box-shadow: 0 4px 9.6px 0.4px rgba(#e34a4a, .5);
+  color: $toast-color;
+  border-radius: $toast-border-radius;
+  i,
+  i.fa {
+    font-size: $toast-icon-size;
+    color: #e34a4a;
+    margin-left: $toast-icon-ml;
+    margin-right: $toast-icon-mr;
+  }
+  a.action:hover {
+    text-decoration: none;
+  }
+}
