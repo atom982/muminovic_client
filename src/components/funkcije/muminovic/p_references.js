@@ -571,7 +571,7 @@ module.exports = {
           return [
             test,
             rezultat,
-            interpretacija.SedimentLeukocitiEritrociti(
+            interpretacija.SedimentLeukocitiEritrocitiMedLabDosta(
               rezultat,
               jedinica,
               dref,
@@ -579,7 +579,7 @@ module.exports = {
             )[0],
             jedinica,
             dref.replace("-", "") + " - " + gref.replace("-", ""),
-            interpretacija.SedimentLeukocitiEritrociti(
+            interpretacija.SedimentLeukocitiEritrocitiMedLabDosta(
               rezultat,
               jedinica,
               dref,
@@ -591,7 +591,7 @@ module.exports = {
           return [
             test,
             rezultat,
-            interpretacija.SedimentLeukocitiEritrociti(
+            interpretacija.SedimentLeukocitiEritrocitiMedLabDosta(
               rezultat,
               jedinica,
               dref,
@@ -599,7 +599,7 @@ module.exports = {
             )[0],
             jedinica,
             dref.replace("-", "") + " - " + gref.replace("-", ""),
-            interpretacija.SedimentLeukocitiEritrociti(
+            interpretacija.SedimentLeukocitiEritrocitiMedLabDosta(
               rezultat,
               jedinica,
               dref,
