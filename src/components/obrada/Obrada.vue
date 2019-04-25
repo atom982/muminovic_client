@@ -411,21 +411,21 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-          <div class="col-md-6">
-            <loading
-              :active.sync="isLoading"
-              :can-cancel="false"
-              :on-cancel="onCancel"
-              color="#4ae387"
-              :is-full-page="fullPage"
-            ></loading>
-          </div>
-          <div class="col-md-6">
-            <button v-if="false" @click.prevent="Test">{{'Loading...'}}</button>
-          </div>
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <loading
+            :active.sync="isLoading"
+            :can-cancel="false"
+            :on-cancel="onCancel"
+            color="#4ae387"
+            :is-full-page="fullPage"
+          ></loading>
+        </div>
+        <div class="col-md-6">
+          <button v-if="false" @click.prevent="Test">{{'Loading...'}}</button>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
@@ -810,7 +810,6 @@ export default {
       }
     },
     GetSingleSample(data) {
-
       this.testovi = [];
       this.rezultati = [];
       this.analitiprikaz = [];
@@ -840,7 +839,6 @@ export default {
           {}
         )
         .then(res => {
-
           var test = {};
 
           if (res.data.data.length) {
@@ -932,7 +930,6 @@ export default {
         });
     },
     BarcodePrint(data) {
-
       var link = barcode + data.sid + ".png";
 
       http
@@ -961,7 +958,6 @@ export default {
         });
     },
     SaveResults(rezultati, from) {
-
       rezultati.forEach(element => {
         element.rezultat = element.rezultat.replace(/,/g, ".");
       });
@@ -993,7 +989,6 @@ export default {
               {}
             )
             .then(res => {
-
               this.uzorci = [];
 
               res.data.results.forEach(element => {
@@ -1083,7 +1078,6 @@ export default {
     },
 
     DeletedSample(data) {
-     
       this.uzorci.forEach(element => {
         if (element.sid === data) {
           element.removed = false;
@@ -1098,7 +1092,6 @@ export default {
       }
 
       if (this.uzorci.length) {
-
         this.show = false;
         this.main = false;
 
@@ -1117,7 +1110,6 @@ export default {
             {}
           )
           .then(res => {
-
             this.count = res.data.results.length;
             this.approved = 0;
 
@@ -1147,7 +1139,6 @@ export default {
             });
 
             if (this.count == this.approved) {
-
               var report = [];
 
               this.uzorci.forEach(element => {
@@ -1181,7 +1172,6 @@ export default {
                         naziv: this.timestamp
                       })
                       .then(res => {
-
                         this.final_pdf = true;
 
                         this.uzorci = [];
@@ -1273,7 +1263,6 @@ export default {
                   }
                 });
             } else {
-
               this.uzorci = [];
 
               res.data.results.forEach(element => {
@@ -1364,7 +1353,6 @@ export default {
       }
     },
     EditSample(data) {
-
       document.getElementById(data).click();
 
       http
@@ -1382,7 +1370,6 @@ export default {
           {}
         )
         .then(res => {
-
           this.uzorci = [];
 
           res.data.results.forEach(element => {
@@ -1461,9 +1448,7 @@ export default {
           });
         })
         .then(() => {
-
           document.getElementById(this.$store.state.sid).click();
-
         });
     },
     RetestEnable: function(event) {
@@ -1476,7 +1461,7 @@ export default {
         })
         .then(res => {
           if (true) {
-            this.rezultati.forEach(element => {              
+            this.rezultati.forEach(element => {
               if (element.test === event.target.id) {
                 element.retest = true;
               }
@@ -1504,7 +1489,6 @@ export default {
     },
 
     MultiGet: function(event, naziv, ana, rezultat, odobren) {
-
       this.naslov = "Rezultati testa: " + naziv + " (" + ana + ")";
       this.analiti = [];
       var single = {};
@@ -1628,9 +1612,8 @@ export default {
       this.$refs.staticModalSendMail.open();
     },
     SendMail(email) {
-
       // Vue Loading Overlay Component
-      this.isLoading = true;      
+      this.isLoading = true;
 
       http
         .post("nalazi/mail", {
@@ -1642,12 +1625,10 @@ export default {
           naziv: this.timestamp
         })
         .then(res => {
-
           // Vue Loading Overlay Component
-          this.isLoading = false;          
+          this.isLoading = false;
 
           if (res.data.success) {
-
             this.toastText = "Nalaz uspješno poslan.";
             this.toastIcon = "fa-check";
             this.toastPosition = "top-right";
@@ -1672,7 +1653,6 @@ export default {
                 .then(res => {});
             }
           } else {
-
             this.toastText = "Greška prilikom slanja nalaza!";
             this.toastIcon = "fa-remove";
             this.toastPosition = "top-right";
@@ -1689,13 +1669,12 @@ export default {
         });
     },
     SaveMultiResults(analiti, data) {
-
       analiti.forEach(analit => {
         analit.rezultat = analit.rezultat.replace(/,/g, ".");
       });
 
       // Vue Loading Overlay Component
-      this.isLoading = true;     
+      this.isLoading = true;
 
       http
         .post("/rezultati/odobravanje/analiti/" + this.$store.state.sid, {
@@ -1719,7 +1698,6 @@ export default {
               {}
             )
             .then(res => {
-
               this.uzorci = [];
 
               res.data.results.forEach(element => {
@@ -1802,12 +1780,10 @@ export default {
               });
 
               // Vue Loading Overlay Component
-              this.isLoading = false;             
-
+              this.isLoading = false;
             });
         })
         .then(res => {
-
           var data = {};
 
           this.uzorci.forEach(element => {
@@ -1845,7 +1821,6 @@ export default {
               {}
             )
             .then(res => {
-
               var test = {};
 
               if (res.data.data.length) {
@@ -1961,7 +1936,6 @@ export default {
               {}
             )
             .then(res => {
-
               this.uzorci = [];
 
               res.data.results.forEach(element => {
@@ -2045,7 +2019,6 @@ export default {
             });
         })
         .then(res => {
-
           var data = {};
 
           this.uzorci.forEach(element => {
@@ -2081,7 +2054,6 @@ export default {
               {}
             )
             .then(res => {
-
               var test = {};
 
               if (res.data.data.length) {
@@ -2172,7 +2144,6 @@ export default {
     },
 
     Approve(rezultati) {
-
       this.rezultati.forEach(element => {
         element.edit = false;
       });
@@ -2191,7 +2162,6 @@ export default {
           rezultati: rezultati
         })
         .then(res => {
-
           // Vue Loading Overlay Component
           this.isLoading = true;
           // console.log("Loading Overlay: " + true);
@@ -2203,7 +2173,6 @@ export default {
               token: this.$store.state.token
             })
             .then(res => {
-
               this.report = {};
 
               this.uzorci.forEach(element => {
@@ -2245,7 +2214,6 @@ export default {
                       {}
                     )
                     .then(res => {
-
                       this.final_pdf = res.data.final_pdf;
 
                       this.count = res.data.results.length;
@@ -2275,9 +2243,8 @@ export default {
                       var response = res.data.results;
 
                       if (this.count == this.approved) {
-
                         console.warn("Generate new Report.");
-                       
+
                         var report = [];
 
                         this.uzorci.forEach(element => {
@@ -2408,12 +2375,10 @@ export default {
                                   // Vue Loading Overlay Component
                                   this.isLoading = false;
                                   // console.log("Loading Overlay: " + false);
-
                                 });
                             }
                           });
                       } else {
-
                         this.uzorci = [];
 
                         res.data.results.forEach(element => {
@@ -2502,7 +2467,6 @@ export default {
                         // Vue Loading Overlay Component
                         this.isLoading = false;
                         // console.log("Loading Overlay: " + false);
-
                       }
                     })
                     .then(res => {});
@@ -2512,7 +2476,6 @@ export default {
     },
 
     Disapprove(rezultati, from) {
-
       this.rezultati.forEach(element => {
         if (element.calculated) {
           this.calculated = true;
@@ -2541,7 +2504,6 @@ export default {
               {}
             )
             .then(res => {
-
               this.final_pdf = res.data.final_pdf;
 
               this.count = res.data.results.length;
@@ -2681,7 +2643,6 @@ export default {
               {}
             )
             .then(res => {
-
               this.final_pdf = res.data.final_pdf;
 
               this.count = res.data.results.length;
@@ -2803,7 +2764,7 @@ export default {
                   .then(res => {
                     this.main = true;
 
-                    if (this.lokacija.sendEmail) {
+                    if (this.lokacija.sendEmail && !res.data.IgE) {
                       // console.log('Auto Mail Sender: ' + true)
                       http
                         .post("nalazi/mail", {
@@ -2816,11 +2777,20 @@ export default {
                         })
                         .then(res => {
                           if (res.data.success) {
-
                             // console.log('Email sent successfully.')
+                            this.toastText = "Nalaz uspješno poslan.";
+                            this.toastIcon = "fa-check";
+                            this.toastPosition = "top-right";
+                            this.className = "vuestic-toast-primary";
 
+                            this.showToast(this.toastText, {
+                              icon: this.toastIcon,
+                              position: this.toastPosition,
+                              duration: 2500,
+                              fullWidth: this.false,
+                              className: this.className
+                            });
                           } else {
-
                             this.toastText = "Greška prilikom slanja nalaza!";
                             this.toastIcon = "fa-remove";
                             this.toastPosition = "top-right";
@@ -2835,7 +2805,21 @@ export default {
                             });
                           }
                         });
-                    }else{
+                    } else if (res.data.IgE) {
+                      // console.warn("IgE: " + res.data.IgE);
+                      this.toastText = "IgE na nalazu.";
+                      this.toastIcon = "fa-warning";
+                      this.toastPosition = "top-right";
+                      this.className = "vuestic-toast-warning";
+
+                      this.showToast(this.toastText, {
+                        icon: this.toastIcon,
+                        position: this.toastPosition,
+                        duration: 2500,
+                        fullWidth: this.false,
+                        className: this.className
+                      });
+                    } else {
                       // console.log('Auto Mail Sender: ' + false)
                     }
                   });
@@ -2847,7 +2831,6 @@ export default {
     },
 
     UnVerify(data) {
-
       this.verificiran = false;
       this.sid = data.sid;
 
@@ -2873,7 +2856,6 @@ export default {
               {}
             )
             .then(res => {
-
               this.final_pdf = res.data.final_pdf;
 
               this.count = res.data.results.length;
