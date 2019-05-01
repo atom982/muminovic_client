@@ -18,7 +18,7 @@
         <div class="container">
           <div class="left">
             <i
-              v-if="data_length > 1 && data_pid > data_min"
+              v-if="rezultati_length > 1 && data_pid > data_min"
               @click.prevent="Prethodni()"
               class="fa fa-backward pull-left"
             >
@@ -26,7 +26,7 @@
             </i>
 
             <i
-              v-if="data_length > 1 && data_pid === data_min"
+              v-if="rezultati_length > 1 && data_pid === data_min"
               class="fa fa-step-backward pull-left stop"
               style="color:#e34a4a;"
             >
@@ -35,13 +35,15 @@
           </div>
           <div
             @click.prevent="Find()"
-            v-if="data_length > 1"
+            v-if="rezultati_length > 1"
             :class="{'center green': datum.trim() === today.trim(), 'center red': datum.trim() != today.trim()}"
-            style="font-size:17px;"
-          >{{data_pid}}/{{data_length}}</div>
+            style="font-size:22px;"
+          >
+          <sup>{{data_pid}}/{{data_length}}</sup>
+          </div>
           <div class="right">
             <i
-              v-if="data_length > 1 && data_length > data_pid"
+              v-if="rezultati_length > 1 && data_length > data_pid"
               @click.prevent="Sljedeci()"
               class="fa fa-forward pull-right"
             >
@@ -49,7 +51,7 @@
             </i>
 
             <i
-              v-if="data_length > 1 && data_length == data_pid && data_pid > 0"
+              v-if="rezultati_length > 1 && data_length == data_pid && data_pid > 0"
               class="fa fa-step-forward pull-right stop"
               style="color:#e34a4a;"
             >
@@ -93,6 +95,10 @@ export default {
       default: false
     },
     data_length: {
+      type: Number,
+      default: 0
+    },
+    rezultati_length: {
       type: Number,
       default: 0
     },

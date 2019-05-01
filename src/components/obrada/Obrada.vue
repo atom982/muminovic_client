@@ -56,6 +56,7 @@
         :main="main"
         :data_pid="Number(data_pid)"
         :data_length="Number(data_length)"
+        :rezultati_length="Results.length"
         :data_min="Number(data_min)"
         :datum="query_date"
         :today="today_date"
@@ -908,7 +909,7 @@ export default {
         )
         .then(res => {
           this.header =
-            "Obrada rezultata za pacijenta: " +
+            // "Obrada rezultata za pacijenta: " +
             res.data.results[0].patient.ime +
             " " +
             res.data.results[0].patient.prezime;
