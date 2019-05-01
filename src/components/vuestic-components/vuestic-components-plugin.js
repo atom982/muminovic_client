@@ -58,6 +58,7 @@ import VuesticModalEdit from "src/components/obrada/VuesticModalEdit";
 import VuesticModalMulti from "src/components/obrada/VuesticModalMulti";
 import VuesticModalComment from "src/components/obrada/VuesticModalComment";
 import VuesticModalMail from "src/components/obrada/VuesticModalMail";
+import VuesticModalFind from "src/components/obrada/VuesticModalFind";
 import VuesticModalUzorci from "src/components/obrada/VuesticModalUzorci";
 import VuesticModalError from "src/components/obrada/VuesticModalError";
 // End of Obrada
@@ -134,6 +135,7 @@ const VuesticComponentsPlugin = {
     Vue.component(VuesticModalMulti.name, VuesticModalMulti);
     Vue.component(VuesticModalComment.name, VuesticModalComment);
     Vue.component(VuesticModalMail.name, VuesticModalMail);
+    Vue.component(VuesticModalFind.name, VuesticModalFind);
     Vue.component(VuesticModalUzorci.name, VuesticModalUzorci);
     Vue.component(VuesticModalError.name, VuesticModalError);
     // End of Obrada

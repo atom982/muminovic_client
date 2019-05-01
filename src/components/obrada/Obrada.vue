@@ -49,7 +49,19 @@
 
       <!-- Prikaz rezultata (Main screen) -->
 
-      <vuestic-widget v-show="main" :headerText="header">
+      <vuestic-widget
+        v-show="main"
+        :headerText="header"
+        :pagination="pagination"
+        :main="main"
+        :data_pid="Number(data_pid)"
+        :data_length="Number(data_length)"
+        :data_min="Number(data_min)"
+        :datum="query_date"
+        :today="today_date"
+        :forward_disabled="forward_disabled"
+        :backward_disabled="backward_disabled"
+      >
         <vuestic-accordion-obrada>
           <vuestic-collapse-obrada
             v-for="uzorak in uzorci"
@@ -408,6 +420,23 @@
           <h5>{{'Greška prilikom čitanja nalaza!'}}</h5>
         </div>
       </vuestic-modal-error>
+
+      <vuestic-modal-find 
+        :show.sync="show"
+        :data_pid="Number(data_pid)"
+        :data_length="Number(data_length)"
+        ref="staticModalFind"
+        cancelText="ODUSTANI"
+        okText="POTVRDI"
+      >
+        <div slot="title">
+          {{''}}
+          <span style="color: #e34a4a;">{{'Unesite redni broj pacijenta'}}</span>
+        </div>
+        <div>
+          <h5></h5>
+        </div>
+      </vuestic-modal-find>
     </div>
 
     <div class="row">
@@ -492,6 +521,19 @@ export default {
       sample: {},
       resdata: {},
       email_changed: false,
+      Previous: { pid: null },
+      Next: { pid: null },
+      Results: [],
+      Datum: { today: null, query: null, next: null, previous: null },
+      pagination: false,
+      forward_disabled: false,
+      backward_disabled: false,
+      data_length: 0,
+      data_min: 1,
+      data_pid: 0,
+      query_date: "",
+      today_date: "",
+      // Toasts
       toastText: "",
       toastIcon: "",
       toastPosition: "",
@@ -604,6 +646,33 @@ export default {
       console.warn("Greška prilikom čitanja nalaza.");
       // Generate new Report
     });
+    bus.$on("Sljedeci", () => {
+      this.Sljedeci();
+    });
+    bus.$on("Prethodni", () => {
+      this.Prethodni();
+    });
+    bus.$on("Search", () => {
+      this.$refs.staticModalFind.open();
+    });
+    bus.$on("Push", data => {
+      if (this.$route.params.id != data) {
+        this.Results.forEach(element => {
+          if (element.pid == data) {
+            router.push(
+              "/rezultati/obrada/" +
+                element.patient +
+                "/" +
+                element.pid +
+                "?date=" +
+                element.date
+            );
+          }
+        });
+      } else {
+        // console.warn("No change required.");
+      }
+    });
   },
 
   beforeDestroy() {
@@ -624,10 +693,58 @@ export default {
     bus.$off("SaveMulti");
     bus.$off("Mail");
     bus.$off("Error");
+    bus.$off("Sljedeci");
+    bus.$off("Prethodni");
+    bus.$off("Search");
+    bus.$off("Push");
   },
 
   created() {
     this.Created();
+
+    this.Previous.pid = Number(this.$route.params.id) - 1;
+    this.Next.pid = Number(this.$route.params.id) + 1;
+    this.query_date = this.$route.query.date.substring(8, 10) + "." + this.$route.query.date.substring(5, 7) + "." + this.$route.query.date.substring(0, 4)    
+
+    this.Datum.today = new Date(
+      JSON.stringify(
+        new Date(new Date().setDate(new Date().getDate()))
+      ).substring(1, 11) + "T00:00:00"
+    );
+
+    this.today_date = JSON.stringify(
+        new Date(new Date().setDate(new Date().getDate()))
+      ).substring(1, 11).substring(8, 10) + "." + JSON.stringify(
+        new Date(new Date().setDate(new Date().getDate()))
+      ).substring(1, 11).substring(5, 7) + "." + JSON.stringify(
+        new Date(new Date().setDate(new Date().getDate()))
+      ).substring(1, 11).substring(0, 4)
+
+    this.Datum.query = new Date(
+      this.$route.query.date.substring(0, 10) + "T00:00:00"
+    );
+
+    this.Datum.next = new Date(
+      new Date(this.$route.query.date.substring(0, 10) + "T00:00:00").setDate(
+        this.Datum.query.getDate() + 1
+      )
+    );
+    
+    this.Datum.previous = new Date(
+      new Date(this.$route.query.date.substring(0, 10) + "T00:00:00").setDate(
+        this.Datum.query.getDate() - 1
+      )
+    );
+
+    // console.log(this.Datum)
+
+    if (new Date(this.Datum.today) > new Date(this.Datum.query)) {
+      // this.pagination = false;
+    } else if (new Date(this.Datum.today) < new Date(this.Datum.query)) {
+      // this.pagination = false;
+    } else {
+      // this.pagination = true;
+    }
   },
 
   methods: {
@@ -641,6 +758,138 @@ export default {
     onCancel() {
       // console.log("User cancelled the loader.");
     },
+
+    Prethodni() {
+      this.pagination = false;
+
+      var check = 0;
+      var found = false;
+      this.Results.forEach(element => {
+        check++;
+        if (element.pid == this.Previous.pid) {
+          found = true;
+          router.push(
+            "/rezultati/obrada/" +
+              element.patient +
+              "/" +
+              element.pid +
+              "?date=" +
+              element.date
+          );
+        }
+      });
+
+      if (check === this.Results.length) {
+        if (found) {
+          http
+            .get(
+              "/rezultati/pagination" +
+                "?token=" +
+                this.$store.state.token +
+                "&site=" +
+                this.$store.state.site +
+                "&pid=" +
+                this.Previous.pid.toString() +
+                "&date=" +
+                this.$route.query.date,
+              {}
+            )
+            .then(res => {
+              this.data_length =
+                res.data.rezultati[res.data.rezultati.length - 1].pid;
+              this.data_min = res.data.rezultati[0].pid;
+              if (Object.getOwnPropertyNames(res.data).length === 0) {
+                console.warn("No data.");
+                this.pagination = true;
+                this.backward_disabled = true;
+              } else {
+                this.data_pid = res.data.data.pid;
+                this.Results = res.data.rezultati;
+                router.push(
+                  "/rezultati/obrada/" +
+                    res.data.data.patient +
+                    "/" +
+                    res.data.data.pid +
+                    "?date=" +
+                    res.data.data.date
+                );
+              }
+            });
+        } else {
+          this.Previous.pid = this.Previous.pid - 1;
+          if(this.Previous.pid > 0){
+            this.Prethodni();
+          } else {
+            
+          }        
+        }
+      } else {
+      }
+    },
+    Sljedeci() {
+      this.pagination = false;
+
+      var check = 0;
+      var found = false;
+      this.Results.forEach(element => {
+        check++;
+        if (element.pid == this.Next.pid) {
+          found = true;
+          router.push(
+            "/rezultati/obrada/" +
+              element.patient +
+              "/" +
+              element.pid +
+              "?date=" +
+              element.date
+          );
+        }
+      });
+
+      if (check === this.Results.length) {
+        if (found) {
+          http
+            .get(
+              "/rezultati/pagination" +
+                "?token=" +
+                this.$store.state.token +
+                "&site=" +
+                this.$store.state.site +
+                "&pid=" +
+                this.Next.pid.toString() +
+                "&date=" +
+                this.$route.query.date,
+              {}
+            )
+            .then(res => {
+              this.data_length =
+                res.data.rezultati[res.data.rezultati.length - 1].pid;
+              this.data_min = res.data.rezultati[0].pid;
+              if (Object.getOwnPropertyNames(res.data).length === 0) {
+                console.warn("No data.");
+                this.pagination = true;
+                this.forward_disabled = true;
+              } else {
+                this.data_pid = res.data.data.pid;
+                this.Results = res.data.rezultati;
+                router.push(
+                  "/rezultati/obrada/" +
+                    res.data.data.patient +
+                    "/" +
+                    res.data.data.pid +
+                    "?date=" +
+                    res.data.data.date
+                );
+              }
+            });
+        } else {
+          this.Next.pid = this.Next.pid + 1;
+          this.Sljedeci();
+        }
+      } else {
+      }
+    },
+
     Created() {
       // console.log("Created() {...");
       http
@@ -792,6 +1041,34 @@ export default {
 
           this.main = true;
           // console.log(this.uzorci)
+          this.pagination = true;
+
+          http
+            .get(
+              "/rezultati/pagination" +
+                "?token=" +
+                this.$store.state.token +
+                "&site=" +
+                this.$store.state.site +
+                "&pid=" +
+                this.$route.params.id +
+                "&date=" +
+                this.$route.query.date,
+              {}
+            )
+            .then(res => {              
+              this.data_length =
+                res.data.rezultati[res.data.rezultati.length - 1].pid;
+              this.data_min = res.data.rezultati[0].pid;
+              if (Object.getOwnPropertyNames(res.data).length === 0) {
+                console.warn("No data.");
+                this.pagination = true;
+                this.forward_disabled = true;
+              } else {                
+                this.data_pid = res.data.data.pid;
+                this.Results = res.data.rezultati;
+              }
+            });     
         });
     },
     Povratak() {
