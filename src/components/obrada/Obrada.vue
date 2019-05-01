@@ -57,6 +57,7 @@
         :data_pid="Number(data_pid)"
         :data_length="Number(data_length)"
         :rezultati_length="Results.length"
+        :spol="data_spol"
         :data_min="Number(data_min)"
         :datum="query_date"
         :today="today_date"
@@ -532,6 +533,7 @@ export default {
       data_length: 0,
       data_min: 1,
       data_pid: 0,
+      data_spol: "",
       query_date: "",
       today_date: "",
       // Toasts
@@ -923,6 +925,7 @@ export default {
           this.pacijent = res.data.results[0].patient._id;
           this.ime = res.data.results[0].patient.ime;
           this.prezime = res.data.results[0].patient.prezime;
+          this.data_spol = res.data.results[0].patient.spol;
           this.jmbg = res.data.results[0].patient.jmbg;
           this.pid = res.data.results[0].sample.pid;
 

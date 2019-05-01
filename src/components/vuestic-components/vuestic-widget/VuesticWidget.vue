@@ -1,6 +1,12 @@
 <template>
   <div class="widget" :class="{'no-header': !headerText}">
     <div style="position: relative;" class="widget-header" v-if="headerText">
+      <span v-if="spol === 'MUŠKI'" style="color:#4ab2e3;">
+        <i class="fa fa-mars"></i>&nbsp
+      </span>
+      <span v-if="spol === 'ŽENSKI'" style="color:#db76df;">
+        <i class="fa fa-venus"></i>&nbsp
+      </span>
       {{headerText}}
       <span
         v-if="datum != ''"
@@ -12,7 +18,7 @@
       </span>
       <div
         style="position: absolute;right: 20px;"
-        v-if="pagination && main"
+        v-if="pagination && main && window.width > 800"
         class="col-md-2 pull-right"
       >
         <div class="container">
@@ -39,7 +45,7 @@
             :class="{'center green': datum.trim() === today.trim(), 'center red': datum.trim() != today.trim()}"
             style="font-size:22px;"
           >
-          <sup>{{data_pid}}/{{data_length}}</sup>
+            <sup>{{data_pid}}/{{data_length}}</sup>
           </div>
           <div class="right">
             <i
@@ -62,8 +68,57 @@
       </div>
     </div>
 
+    <div class="widget-header" v-if="pagination && main && window.width <= 800">
+      <div class="container">
+        <div class="left">
+          <i
+            v-if="rezultati_length > 1 && data_pid > data_min"
+            @click.prevent="Prethodni()"
+            class="fa fa-backward pull-left"
+          >
+            <span style="font-size:15px; color:#acb5be;">{{''}}</span>
+          </i>
+
+          <i
+            v-if="rezultati_length > 1 && data_pid === data_min"
+            class="fa fa-step-backward pull-left stop"
+            style="color:#e34a4a;"
+          >
+            <span style="font-size:15px; color:#acb5be;">{{''}}</span>
+          </i>
+        </div>
+        <div
+          @click.prevent="Find()"
+          v-if="rezultati_length > 1"
+          :class="{'center green': datum.trim() === today.trim(), 'center red': datum.trim() != today.trim()}"
+          style="font-size:22px;"
+        >
+          <sup>{{data_pid}}/{{data_length}}</sup>
+        </div>
+        <div class="right">
+          <i
+            v-if="rezultati_length > 1 && data_length > data_pid"
+            @click.prevent="Sljedeci()"
+            class="fa fa-forward pull-right"
+          >
+            <span style="font-size:15px; color:#acb5be;">{{''}}</span>
+          </i>
+
+          <i
+            v-if="rezultati_length > 1 && data_length == data_pid && data_pid > 0"
+            class="fa fa-step-forward pull-right stop"
+            style="color:#e34a4a;"
+          >
+            <span style="font-size:15px; color:#acb5be;">{{''}}</span>
+          </i>
+        </div>
+      </div>
+    </div>
+
     <div class="widget-body">
       <slot></slot>
+      <!-- Width: {{ window.width }},
+      Height: {{ window.height }} -->
     </div>
   </div>
 </template>
@@ -71,10 +126,22 @@
 <script>
 import { bus } from "../../../main";
 export default {
+  data() {
+    return {
+      window: {
+        width: 0,
+        height: 0
+      }
+    };
+  },
   name: "vuestic-widget",
 
   props: {
     headerText: {
+      type: String,
+      default: ""
+    },
+    spol: {
       type: String,
       default: ""
     },
@@ -119,7 +186,18 @@ export default {
       default: ""
     }
   },
+  created() {
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+  },
   methods: {
+    handleResize() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight;
+    },
     Sljedeci() {
       bus.$emit("Sljedeci");
     },
