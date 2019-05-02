@@ -798,6 +798,13 @@ export default {
               {}
             )
             .then(res => {
+              res.data.rezultati = res.data.rezultati.sort(function(a, b) {
+                return a.pid.localeCompare(b.pid, undefined, {
+                  numeric: true,
+                  sensitivity: "base"
+                });
+              });
+
               this.data_length =
                 res.data.rezultati[res.data.rezultati.length - 1].pid;
               this.data_min = res.data.rezultati[0].pid;
@@ -865,6 +872,13 @@ export default {
               {}
             )
             .then(res => {
+              res.data.rezultati = res.data.rezultati.sort(function(a, b) {
+                return a.pid.localeCompare(b.pid, undefined, {
+                  numeric: true,
+                  sensitivity: "base"
+                });
+              });
+
               this.data_length =
                 res.data.rezultati[res.data.rezultati.length - 1].pid;
               this.data_min = res.data.rezultati[0].pid;
@@ -1060,7 +1074,14 @@ export default {
                 this.$route.query.date,
               {}
             )
-            .then(res => {              
+            .then(res => {   
+              res.data.rezultati = res.data.rezultati.sort(function(a, b) {
+                return a.pid.localeCompare(b.pid, undefined, {
+                  numeric: true,
+                  sensitivity: "base"
+                });
+              });
+                         
               this.data_length =
                 res.data.rezultati[res.data.rezultati.length - 1].pid;
               this.data_min = res.data.rezultati[0].pid;
