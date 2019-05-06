@@ -4,6 +4,7 @@
       class="vuestic-collapse__header"
       :class="{'vuestic-collapse__header--no-header': noHeader}"
       @click="emitHeader($event)"
+      :id="id"
     >
       <template v-if="noHeader">
         <slot name="header"/>
@@ -57,6 +58,12 @@ export default {
         return [];
       }
     },
+    lokacija: {
+      type: Object,
+      default: function() {
+        return {};
+      }
+    },
     final: {
       type: Boolean,
       default: true
@@ -70,6 +77,10 @@ export default {
       default: ""
     },
     pacijent: {
+      type: String,
+      default: ""
+    },
+    id: {
       type: String,
       default: ""
     },

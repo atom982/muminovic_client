@@ -249,9 +249,11 @@
         <div v-if="verificiran" class="va-row">
           <div class="flex md12">
             <vuestic-collapse-nalaz
+              :id="lokacija.email"
               :final="verificiran"
               :final_pdf="final_pdf"
               :samples="samples"
+              :lokacija="lokacija"
               :pdf="link"
               :pacijent="ime + ' ' + prezime"
             >
@@ -404,7 +406,11 @@
           {{'Slanje nalaza na adresu: '}}
           <span style="color: #4ae387;">{{email}}</span>
         </div>
-        <div>
+        <div style="text-align: center;">
+          <h5 v-if="IgE" style="color: #e34a4a;">
+            <i :class="{'fa fa-exclamation-triangle icon-right input-icon error-icon' : true}"></i>
+            {{' IgE na nalazu!'}}
+          </h5>
           <h5>{{'Jeste li sigurni da želite poslati nalaz?'}}</h5>
         </div>
       </vuestic-modal-mail>
@@ -423,7 +429,7 @@
         </div>
       </vuestic-modal-error>
 
-      <vuestic-modal-find 
+      <vuestic-modal-find
         :show.sync="show"
         :data_pid="Number(data_pid)"
         :data_length="Number(data_length)"
@@ -536,6 +542,7 @@ export default {
       data_spol: "",
       query_date: "",
       today_date: "",
+      IgE: false,
       // Toasts
       toastText: "",
       toastIcon: "",
@@ -707,7 +714,12 @@ export default {
 
     this.Previous.pid = Number(this.$route.params.id) - 1;
     this.Next.pid = Number(this.$route.params.id) + 1;
-    this.query_date = this.$route.query.date.substring(8, 10) + "." + this.$route.query.date.substring(5, 7) + "." + this.$route.query.date.substring(0, 4)    
+    this.query_date =
+      this.$route.query.date.substring(8, 10) +
+      "." +
+      this.$route.query.date.substring(5, 7) +
+      "." +
+      this.$route.query.date.substring(0, 4);
 
     this.Datum.today = new Date(
       JSON.stringify(
@@ -715,13 +727,18 @@ export default {
       ).substring(1, 11) + "T00:00:00"
     );
 
-    this.today_date = JSON.stringify(
-        new Date(new Date().setDate(new Date().getDate()))
-      ).substring(1, 11).substring(8, 10) + "." + JSON.stringify(
-        new Date(new Date().setDate(new Date().getDate()))
-      ).substring(1, 11).substring(5, 7) + "." + JSON.stringify(
-        new Date(new Date().setDate(new Date().getDate()))
-      ).substring(1, 11).substring(0, 4)
+    this.today_date =
+      JSON.stringify(new Date(new Date().setDate(new Date().getDate())))
+        .substring(1, 11)
+        .substring(8, 10) +
+      "." +
+      JSON.stringify(new Date(new Date().setDate(new Date().getDate())))
+        .substring(1, 11)
+        .substring(5, 7) +
+      "." +
+      JSON.stringify(new Date(new Date().setDate(new Date().getDate())))
+        .substring(1, 11)
+        .substring(0, 4);
 
     this.Datum.query = new Date(
       this.$route.query.date.substring(0, 10) + "T00:00:00"
@@ -732,7 +749,7 @@ export default {
         this.Datum.query.getDate() + 1
       )
     );
-    
+
     this.Datum.previous = new Date(
       new Date(this.$route.query.date.substring(0, 10) + "T00:00:00").setDate(
         this.Datum.query.getDate() - 1
@@ -760,6 +777,29 @@ export default {
     },
     onCancel() {
       // console.log("User cancelled the loader.");
+    },
+
+    Lokacija() {
+      http
+        .post("rezultati/nalazi/lokacija", {
+          token: this.$store.state.token,
+          site: this.$store.state.site,
+          timestamp: this.timestamp,
+          location: "/",
+          naziv: this.timestamp,
+          status: true
+        })
+        .then(res => {
+          if (res.data.success) {
+            this.IgE = res.data.nalaz.IgE;
+            this.main = true;
+            // console.log("Nalaz pronađen.");
+            // console.log("IgE: " + this.IgE);
+          } else {
+            this.main = true;
+            // console.log("Nalaz nije pronađen.");
+          }
+        });
     },
 
     Prethodni() {
@@ -827,11 +867,10 @@ export default {
             });
         } else {
           this.Previous.pid = this.Previous.pid - 1;
-          if(this.Previous.pid > 0){
+          if (this.Previous.pid > 0) {
             this.Prethodni();
           } else {
-            
-          }        
+          }
         }
       } else {
       }
@@ -932,7 +971,7 @@ export default {
           this.lokacija = res.data.lokacija;
           this.final_pdf = res.data.final_pdf;
 
-          // console.log(res.data)
+          // console.log(this.lokacija);
 
           this.timestamp = res.data.results[0].timestamp;
 
@@ -943,7 +982,12 @@ export default {
           this.jmbg = res.data.results[0].patient.jmbg;
           this.pid = res.data.results[0].sample.pid;
 
-          this.email = res.data.results[0].patient.email.trim();
+          if (this.lokacija.sendEmail) {            
+            this.email = this.lokacija.email;
+          } else {
+            this.email = res.data.results[0].patient.email.trim();
+          }
+
           this.email_tmp = res.data.results[0].patient.email.trim();
 
           if (!this.Email(this.email)) {
@@ -1057,8 +1101,8 @@ export default {
             });
           });
 
-          this.main = true;
           // console.log(this.uzorci)
+          
           this.pagination = true;
 
           http
@@ -1074,14 +1118,14 @@ export default {
                 this.$route.query.date,
               {}
             )
-            .then(res => {   
+            .then(res => {
               res.data.rezultati = res.data.rezultati.sort(function(a, b) {
                 return a.pid.localeCompare(b.pid, undefined, {
                   numeric: true,
                   sensitivity: "base"
                 });
               });
-                         
+
               this.data_length =
                 res.data.rezultati[res.data.rezultati.length - 1].pid;
               this.data_min = res.data.rezultati[0].pid;
@@ -1089,11 +1133,14 @@ export default {
                 console.warn("No data.");
                 this.pagination = true;
                 this.forward_disabled = true;
-              } else {                
+              } else {
                 this.data_pid = res.data.data.pid;
                 this.Results = res.data.rezultati;
               }
-            });     
+            });
+        })
+        .then(() => {
+          this.Lokacija();
         });
     },
     Povratak() {
@@ -1944,8 +1991,8 @@ export default {
               className: this.className
             });
 
-            if (this.email_changed) {
-              // console.log('Update email address.')
+            /* if (this.email_changed) {
+              console.log('Update email address.')
               http
                 .post("pacijenti/detalji/update/" + this.pacijent, {
                   email: email.trim(),
@@ -1953,7 +2000,7 @@ export default {
                   site: this.$store.state.site
                 })
                 .then(res => {});
-            }
+            } */
           } else {
             this.toastText = "Greška prilikom slanja nalaza!";
             this.toastIcon = "fa-remove";
@@ -3065,65 +3112,73 @@ export default {
                   })
                   .then(res => {
                     this.main = true;
+                    this.IgE = res.data.IgE;
+                    // console.log("Nalaz verificiran.");
+                    // console.log("IgE: " + this.IgE);
+                    this.email = this.lokacija.email;
 
-                    if (this.lokacija.sendEmail && !res.data.IgE) {
-                      // console.log('Auto Mail Sender: ' + true)
-                      http
-                        .post("nalazi/mail", {
-                          token: this.$store.state.token,
-                          site: this.$store.state.site,
-                          email: this.lokacija.email,
-                          timestamp: this.timestamp,
-                          location: "/",
-                          naziv: this.timestamp
-                        })
-                        .then(res => {
-                          if (res.data.success) {
-                            // console.log('Email sent successfully.')
-                            this.toastText = "Nalaz uspješno poslan.";
-                            this.toastIcon = "fa-check";
-                            this.toastPosition = "top-right";
-                            this.className = "vuestic-toast-primary";
-
-                            this.showToast(this.toastText, {
-                              icon: this.toastIcon,
-                              position: this.toastPosition,
-                              duration: 2500,
-                              fullWidth: this.false,
-                              className: this.className
-                            });
-                          } else {
-                            this.toastText = "Greška prilikom slanja nalaza!";
-                            this.toastIcon = "fa-remove";
-                            this.toastPosition = "top-right";
-                            this.className = "vuestic-toast-danger";
-
-                            this.showToast(this.toastText, {
-                              icon: this.toastIcon,
-                              position: this.toastPosition,
-                              duration: 2500,
-                              fullWidth: this.false,
-                              className: this.className
-                            });
-                          }
-                        });
-                    } else if (res.data.IgE) {
-                      // console.warn("IgE: " + res.data.IgE);
-                      this.toastText = "IgE na nalazu.";
-                      this.toastIcon = "fa-warning";
-                      this.toastPosition = "top-right";
-                      this.className = "vuestic-toast-warning";
-
-                      this.showToast(this.toastText, {
-                        icon: this.toastIcon,
-                        position: this.toastPosition,
-                        duration: 2500,
-                        fullWidth: this.false,
-                        className: this.className
-                      });
-                    } else {
-                      // console.log('Auto Mail Sender: ' + false)
+                    if (this.lokacija.sendEmail) {
+                      document.getElementById(this.lokacija.email).click();
                     }
+
+                    // if (this.lokacija.sendEmail && !res.data.IgE) {
+                    //   // console.log('Auto Mail Sender: ' + true)
+                    //   http
+                    //     .post("nalazi/mail", {
+                    //       token: this.$store.state.token,
+                    //       site: this.$store.state.site,
+                    //       email: this.lokacija.email,
+                    //       timestamp: this.timestamp,
+                    //       location: "/",
+                    //       naziv: this.timestamp
+                    //     })
+                    //     .then(res => {
+                    //       if (res.data.success) {
+                    //         // console.log('Email sent successfully.')
+                    //         this.toastText = "Nalaz uspješno poslan.";
+                    //         this.toastIcon = "fa-check";
+                    //         this.toastPosition = "top-right";
+                    //         this.className = "vuestic-toast-primary";
+
+                    //         this.showToast(this.toastText, {
+                    //           icon: this.toastIcon,
+                    //           position: this.toastPosition,
+                    //           duration: 2500,
+                    //           fullWidth: this.false,
+                    //           className: this.className
+                    //         });
+                    //       } else {
+                    //         this.toastText = "Greška prilikom slanja nalaza!";
+                    //         this.toastIcon = "fa-remove";
+                    //         this.toastPosition = "top-right";
+                    //         this.className = "vuestic-toast-danger";
+
+                    //         this.showToast(this.toastText, {
+                    //           icon: this.toastIcon,
+                    //           position: this.toastPosition,
+                    //           duration: 2500,
+                    //           fullWidth: this.false,
+                    //           className: this.className
+                    //         });
+                    //       }
+                    //     });
+                    // } else if (res.data.IgE) {
+                    //   // console.warn("IgE: " + res.data.IgE);
+                    //   this.toastText = "IgE na nalazu.";
+                    //   this.toastIcon = "fa-warning";
+                    //   this.toastPosition = "top-right";
+                    //   this.className = "vuestic-toast-warning";
+
+                    //   this.showToast(this.toastText, {
+                    //     icon: this.toastIcon,
+                    //     position: this.toastPosition,
+                    //     duration: 2500,
+                    //     fullWidth: this.false,
+                    //     className: this.className
+                    //   });
+                    // } else {
+                    //   // console.log('Auto Mail Sender: ' + false)
+                    // }
                   });
               } else {
                 this.main = true;
