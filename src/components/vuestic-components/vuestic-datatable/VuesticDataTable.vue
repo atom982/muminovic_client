@@ -2,7 +2,10 @@
   <div class="table-responsive">
     <div class="d-flex flex-md-row flex-column justify-content-md-between align-items-center">
       <filter-bar @filter="onFilterSet"></filter-bar>
+      <date-range v-show="true" @date-range="onDateRangeSet"></date-range>
       <items-per-page
+        :range_max="this.date_range.max"
+        :range_min="this.date_range.min"
         :options="itemsPerPage"
         :defaultPerPage="perPage"
         @items-per-page="onItemsPerPage"
@@ -214,6 +217,7 @@
 import Vuetable from "vuetable-2/src/components/Vuetable";
 import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
 import FilterBar from "./datatable-components/FilterBar.vue";
+import DateRange from "./datatable-components/DateRange.vue";
 import ItemsPerPage from "./datatable-components/ItemsPerPage.vue";
 import Vue from "vue";
 import LocalData from "./data/local-data";
@@ -229,6 +233,7 @@ export default {
   name: "vuestic-data-table",
   components: {
     FilterBar,
+    DateRange,
     Vuetable,
     VuetablePagination,
     ItemsPerPage
@@ -308,7 +313,12 @@ export default {
       uzorci: [],
       nouzorci: [],
       partials: {},
-      partials_array: []
+      partials_array: [],
+      date_range:{
+        min: '',
+        max: ''
+      },
+      filterString: ""
     };
   },
   created() {
@@ -916,10 +926,59 @@ var datePost = niz[0].datum
       this.perPage = d.getFullYear() + "-" + mjesec + "-" + dan;
       this.perPage = "RADNA LISTA";
     },
-    onFilterSet(filterText) {
+    onFilterSet(filterText, event) { 
+
+      this.filterString = ""
+
+      this.filterString = filterText
+      
+      if(event != undefined && filterText.trim() != ''){
+        if(event.keyCode == 13){
+
+          if (this.apiMode) {
+            this.moreParams = {
+              filter: filterText,
+              dateRangeMin: this.date_range.min,
+              dateRangeMax: this.date_range.max
+            };
+          } else {
+            const txt = new RegExp(filterText, "i");
+            this.tableData.data = originalData.filter(function(item) {
+              return item.name.search(txt) >= 0 || item.email.search(txt) >= 0;
+            });
+          }
+          
+          Vue.nextTick(() => this.$refs.vuetable.refresh());
+
+        }else{
+          // console.warn('Waiting for Enter.')
+        }
+
+      }else{
+
+        if (this.apiMode) {
+          this.moreParams = {
+            filter: filterText,
+            dateRangeMin: this.date_range.min,
+            dateRangeMax: this.date_range.max
+          };
+        } else {
+          const txt = new RegExp(filterText, "i");
+          this.tableData.data = originalData.filter(function(item) {
+            return item.name.search(txt) >= 0 || item.email.search(txt) >= 0;
+          });
+        }
+        Vue.nextTick(() => this.$refs.vuetable.refresh());
+      }
+    },
+    onDateRangeSet(val1, val2) { 
+      this.date_range.min = val1  
+      this.date_range.max = val2  
       if (this.apiMode) {
         this.moreParams = {
-          filter: filterText
+          filter: this.filterString,
+          dateRangeMin: this.date_range.min,
+          dateRangeMax: this.date_range.max
         };
       } else {
         const txt = new RegExp(filterText, "i");
@@ -927,12 +986,26 @@ var datePost = niz[0].datum
           return item.name.search(txt) >= 0 || item.email.search(txt) >= 0;
         });
       }
-      Vue.nextTick(() => this.$refs.vuetable.refresh());
+      if(this.date_range.min != '' && this.date_range.max != ''){
+        Vue.nextTick(() => this.$refs.vuetable.refresh());
+
+      }
+      
     },
-    onItemsPerPage(itemsPerPageValue) {
+    onItemsPerPage(itemsPerPageValue) {     
+      this.date_range = {
+        min: '',
+        max: ''
+      }
+
+      this.moreParams = {
+        filter: this.filterString,
+        dateRangeMin: this.date_range.min,
+        dateRangeMax: this.date_range.max,
+
+      };
+
       this.perPage = itemsPerPageValue;
-      // console.log('Iniciran Dropdown Change inside Store:')
-      // console.log('Set to value: ' + this.perPage)
       this.$store.dispatch("dropdownChange", this.perPage);
 
       Vue.nextTick(() => this.$refs.vuetable.refresh());

@@ -10,6 +10,7 @@ import ModalDrS from "src/components/vuestic-components/vuestic-modal/VuesticMod
 import ModalM from "src/components/vuestic-components/vuestic-modal/VuesticModalMedium.vue";
 import ModalS from "src/components/vuestic-components/vuestic-modal/VuesticModalStatic.vue";
 import ModalPatient from "src/components/vuestic-components/vuestic-modal/VuesticModalPatient.vue";
+import VuesticModalPatientsData from "src/components/dashboard/VuesticModalPatientsData.vue";
 import ModalSamplesEntryCommenting from "src/components/vuestic-components/vuestic-modal/VuesticModalSamplesEntryCommenting.vue";
 import ModalSamplesEntryCalendar from "src/components/vuestic-components/vuestic-modal/VuesticModalSamplesEntryCalendar.vue";
 import ModalBarcode from "src/components/vuestic-components/vuestic-modal/VuesticModalBarcode.vue";
@@ -75,6 +76,7 @@ const VuesticComponentsPlugin = {
     Vue.component(Modal.name, Modal);
     Vue.component(ModalM.name, ModalM);
     Vue.component(ModalPatient.name, ModalPatient);
+    Vue.component(VuesticModalPatientsData.name, VuesticModalPatientsData);
     Vue.component(
       ModalSamplesEntryCommenting.name,
       ModalSamplesEntryCommenting
