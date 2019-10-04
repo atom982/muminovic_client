@@ -320,7 +320,7 @@ function _findMatchingParentMenuItem(itemName) {
     }
     .sidebar-menu-item-icon {
       font-size: $sidebar-menu-item-icon-size;
-      color: $brand-warning;
+      color: $brand-info;
       margin-right: 14px;
       &.fa-dashboard {
         /* Temp fix */

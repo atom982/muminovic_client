@@ -71,7 +71,7 @@
               {{header}}
               <span style="color: #e34a4a;">{{ime}} {{prezime}}</span>
             </h5>
-            <br>
+            <br />
 
             <fieldset>
               <div class="row">
@@ -84,7 +84,7 @@
                         v-model="jmbg"
                         name="input-icon-left"
                         required
-                      >
+                      />
                       <i class="glyphicon glyphicon-pencil icon-left input-icon"></i>
                       <label class="control-label" for="input-icon-left">{{'JMBG pacijenta'}}</label>
                       <i class="bar"></i>
@@ -103,7 +103,7 @@
                         v-model="ime"
                         name="input-icon-left"
                         required
-                      >
+                      />
                       <i class="glyphicon glyphicon-pencil icon-left input-icon"></i>
                       <label class="control-label" for="input-icon-left">{{'Ime pacijenta'}}</label>
                       <i class="bar"></i>
@@ -119,7 +119,7 @@
                         v-model="prezime"
                         name="input-icon-left"
                         required
-                      >
+                      />
                       <i class="glyphicon glyphicon-pencil icon-left input-icon"></i>
                       <label class="control-label" for="input-icon-left">{{'Prezime pacijenta'}}</label>
                       <i class="bar"></i>
@@ -192,7 +192,7 @@
                         v-model="telefon"
                         name="input-icon-left"
                         required
-                      >
+                      />
                       <i class="glyphicon glyphicon-pencil icon-left input-icon"></i>
                       <label class="control-label" for="input-icon-left">{{'Kontakt telefon'}}</label>
                       <i class="bar"></i>
@@ -208,7 +208,7 @@
                         v-model="email"
                         name="input-icon-left"
                         required
-                      >
+                      />
                       <i class="glyphicon glyphicon-pencil icon-left input-icon"></i>
                       <label class="control-label" for="input-icon-left">{{'Email adresa'}}</label>
                       <i class="bar"></i>
@@ -293,7 +293,7 @@
 
         <div v-if="prikazi" class="row">
           <div class="col-md-12">
-            <hr>
+            <hr />
             <a @click="prikazi = false" href="#">{{'Sakrij detalje pacijenta'}}</a>
           </div>
         </div>
@@ -899,17 +899,41 @@ export default {
     },
     onFilterSet(filterText) {
       this.imaData = true;
-      if (this.apiMode) {
-        this.moreParams = {
-          filter: filterText
-        };
+
+      this.filterString = "";
+
+      this.filterString = filterText;
+
+      if (event != undefined && filterText.trim() != "") {
+        if (event.keyCode == 13) {
+          if (this.apiMode) {
+            this.moreParams = {
+              filter: filterText
+            };
+          } else {
+            const txt = new RegExp(filterText, "i");
+            this.tableData.data = originalData.filter(function(item) {
+              return item.name.search(txt) >= 0 || item.email.search(txt) >= 0;
+            });
+          }
+
+          Vue.nextTick(() => this.$refs.vuetable.refresh());
+        } else {
+          // console.warn("Waiting for Enter.");
+        }
       } else {
-        const txt = new RegExp(filterText, "i");
-        this.tableData.data = originalData.filter(function(item) {
-          return item.name.search(txt) >= 0 || item.email.search(txt) >= 0;
-        });
+        if (this.apiMode) {
+          this.moreParams = {
+            filter: filterText
+          };
+        } else {
+          const txt = new RegExp(filterText, "i");
+          this.tableData.data = originalData.filter(function(item) {
+            return item.name.search(txt) >= 0 || item.email.search(txt) >= 0;
+          });
+        }
+        Vue.nextTick(() => this.$refs.vuetable.refresh());
       }
-      Vue.nextTick(() => this.$refs.vuetable.refresh());
     },
     onItemsPerPage(itemsPerPageValue) {
       this.imaData = true;
