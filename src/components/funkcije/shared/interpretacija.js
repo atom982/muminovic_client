@@ -118,6 +118,28 @@ module.exports = {
     }
   },
 
+  granicniIntervalGreater: function(rezultat, jedinica, dref, gref) {
+    if (rezultat.includes(",")) {
+      rezultat.replace(",", ".").trim();
+    }
+    if (rezultat.includes("<")) {
+      rezultat.replace("<", "").trim();
+    }
+    if (rezultat.includes(">")) {
+      rezultat.replace(">", "").trim();
+    }
+
+    if (isNaN(rezultat) || rezultat === "") {
+      return [" ", "No Class"];
+    } else if (Number(rezultat) < Number(Math.abs(gref))) {
+      return ["L", "Red"];
+    } else if (Number(rezultat) == Number(Math.abs(gref))) {
+      return [" ", "Yellow"];
+    } else {
+      return [" ", "Green"];
+    }
+  },
+
   granicniIntervalManjeOd: function(rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();

@@ -254,6 +254,26 @@ module.exports = {
           )[1]
         ];
         break;
+        case "PSA ratio": // Granični interval
+        return [
+          test,
+          rezultat,
+          interpretacija.granicniIntervalGreater(
+            rezultat,
+            jedinica,
+            dref,
+            gref
+          )[0],
+          jedinica,
+          " > " + gref.replace("-", ""),
+          interpretacija.granicniIntervalGreater(
+            rezultat,
+            jedinica,
+            dref,
+            gref
+          )[1]
+        ];
+        break;
       case "LH": // *
         return [test, rezultat, "", jedinica, "*", "No Class"];
         break;
