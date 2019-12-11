@@ -6,7 +6,7 @@
         <i class="i-vuestic"></i>
       </a>
       <span style="color: #333; font-size: 12px">
-        <sup>{{'Build'}} 9.12.019</sup>
+        <sup>{{'Build'}} 11.12.019</sup>
       </span>
     </div>
 

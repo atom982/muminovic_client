@@ -27,6 +27,18 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
                       <fieldset>
+
+                        <vuestic-simple-select
+                          v-if="!postoji"
+                          label="Izvor identifikacije"
+                          v-model="izvor"
+                          name="izvor"
+                          :required="true"
+                          title=" "
+                          ref="izvorSelect"
+                          v-bind:options="izvori"
+                        ></vuestic-simple-select>
+
                         <div class="form-group with-icon-left">
                           <div class="input-group">
                             <input
@@ -268,7 +280,9 @@ export default {
       maticni: "",
       postoji: false,
       pacijentID: "",
-      imePrezime: ""
+      imePrezime: "",
+      izvor: "",
+      izvori: ["Lična karta", "Vozačka dozvola", "Saobraćajna dozvola", "Zdravstvena knjižica", "Pasoš", "Usmeno"]
     };
   },
 
@@ -445,10 +459,11 @@ export default {
         this.jmbg.trim() === "" ||
         this.ime.trim() === "" ||
         this.prezime.trim() === "" ||
-        this.spol.trim() === ""
+        this.spol.trim() === "" ||
+        this.izvor.trim() === ""
       ) {
         item = false;
-        this.toastText = this.$t("pacijenti.unos.UnosPacijenta.trnslr011"); // Polja JMBG, Ime, Prezime i Spol su obavezna!
+        this.toastText = "Polja Izvor identifikacije, JMBG, Ime, Prezime i Spol su obavezna!"; // Polja Izvor identifikacije, JMBG, Ime, Prezime i Spol su obavezna!
         this.toastIcon = "fa-warning";
         this.toastPosition = "top-right";
         this.className = "vuestic-toast-warning";
@@ -558,6 +573,7 @@ export default {
                   ime: this.ime.toUpperCase().trim(),
                   prezime: this.prezime.toUpperCase().trim(),
                   spol: this.spol,
+                  izvor: this.izvor,
                   duhan: this.duhan,
                   dijabetes: this.dijabetes,
                   telefon: this.telefon,
