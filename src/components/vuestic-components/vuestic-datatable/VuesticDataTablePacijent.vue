@@ -76,6 +76,19 @@
             <fieldset>
               <div class="row">
                 <div class="col-md-12">
+
+                  <vuestic-simple-select
+                          
+                          label="Izvor identifikacije"
+                          v-model="izvor"
+                          name="izvor"
+                          :required="true"
+                          title=" "
+                          ref="izvorSelect"
+                          v-bind:options="izvori"
+                        ></vuestic-simple-select>
+
+
                   <div class="form-group with-icon-left">
                     <div class="input-group">
                       <input
@@ -405,9 +418,12 @@ export default {
       tmpJmbg: "",
       tmpIme: "",
       tmpPrezime: "",
+      tmpIzvor: "",
       tmpSpol: "",
       tmpAdresa: "",
       tmpTelefon: "",
+      izvor: "",
+      izvori: ["Lična karta", "Vozačka dozvola", "Saobraćajna dozvola", "Zdravstvena knjižica", "Pasoš", "Usmeno"],
       tmpEmail: "",
       tmpDuhan: "",
       tmpDijabetes: "",
@@ -470,6 +486,7 @@ export default {
               this.ime = res.data.pacijent.ime;
               this.prezime = res.data.pacijent.prezime;
               this.adresa = res.data.pacijent.adresa;
+              this.izvor = res.data.pacijent.izvor;
               this.spol = res.data.pacijent.spol;
               this.duhan = res.data.pacijent.duhan;
               this.dijabetes = res.data.pacijent.dijabetes;
@@ -479,6 +496,7 @@ export default {
               this.tmpJmbg = res.data.pacijent.jmbg;
               this.tmpIme = res.data.pacijent.ime;
               this.tmpPrezime = res.data.pacijent.prezime;
+              this.tmpIzvor = res.data.pacijent.izvor;
               this.tmpSpol = res.data.pacijent.spol;
               this.tmpAdresa = res.data.pacijent.adresa;
               this.tmpTelefon = res.data.pacijent.telefon;
@@ -523,6 +541,7 @@ export default {
         this.adresa.trim() === this.tmpAdresa &&
         this.ime.trim() === this.tmpIme &&
         this.prezime.trim() === this.tmpPrezime &&
+        this.izvor.trim() === this.tmpIzvor &&
         this.spol.trim() === this.tmpSpol &&
         this.telefon.trim() === this.tmpTelefon &&
         this.email.trim() === this.tmpEmail &&
@@ -739,6 +758,7 @@ export default {
                   adresa: this.adresa.trim(),
                   duhan: this.duhan.toUpperCase().trim(),
                   dijabetes: this.dijabetes.toUpperCase().trim(),
+                  izvor: this.izvor,
                   telefon: this.telefon.trim(),
                   email: this.email.trim(),
                   token: this.$store.state.token,
@@ -827,6 +847,7 @@ export default {
             this.ime = res.data.pacijent.ime;
             this.prezime = res.data.pacijent.prezime;
             this.adresa = res.data.pacijent.adresa;
+            this.izvor = res.data.pacijent.izvor;
             this.spol = res.data.pacijent.spol;
             this.duhan = res.data.pacijent.duhan;
             this.dijabetes = res.data.pacijent.dijabetes;
@@ -836,13 +857,14 @@ export default {
             this.tmpJmbg = res.data.pacijent.jmbg;
             this.tmpIme = res.data.pacijent.ime;
             this.tmpPrezime = res.data.pacijent.prezime;
+            this.tmpIzvor = res.data.pacijent.izvor;
             this.tmpSpol = res.data.pacijent.spol;
             this.tmpAdresa = res.data.pacijent.adresa;
             this.tmpTelefon = res.data.pacijent.telefon;
             this.tmpEmail = res.data.pacijent.email;
             this.tmpDuhan = res.data.pacijent.duhan;
             this.tmpDijabetes = res.data.pacijent.dijabetes;
-            this.prikazi = true;
+            this.prikazi = true; 
           }
         });
     },
