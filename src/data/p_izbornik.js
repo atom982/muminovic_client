@@ -49,6 +49,7 @@ let rez = {
   Glijadin_IgG: ["", "negativan", "pozitivan"], // Anti Gliadin IgG
   tTg_IgA: ["", "negativan", "pozitivan"], // Anti TTG IgA
   tTg_IgG: ["", "negativan", "pozitivan"], // Anti TTG IgG
+  COV2_IgG: ["", "negativan", "pozitivan"], // COV-2 IgG
   Anti_IF: ["", "negativan", "pozitivan"], // Anti Intrinsic Factor
   Anti_MCV: ["", "negativan", "pozitivan"], // Anti - MCV IgG
   Heliko: ["", "negativan", "pozitivan"], // Helicobacter pylori
