@@ -598,6 +598,22 @@ export default {
             .slice(0, -8)
             .replace("T", " "),
           komentar: ""
+        },
+        {
+          ime: "Bris",
+          code: ["Korona virus"],
+          tip: "Bris Korona",
+          patient: {},
+          testovi: [],
+          testoviTag: [],
+          hitno: false,
+          time: new Date(
+            new Date().getTime() - new Date().getTimezoneOffset() * 60000
+          )
+            .toISOString()
+            .slice(0, -8)
+            .replace("T", " "),
+          komentar: ""
         }
       ],
       oldUzorciList: [],
@@ -1653,22 +1669,8 @@ export default {
             samplesList.push(element.sid);
           });
 
-          // if (this.$store.state.pid_bcode) {
-          //   printEPL(
-          //     undefined,
-          //     undefined,
-          //     undefined,
-          //     undefined,
-          //     undefined,
-          //     undefined,
-          //     undefined,
-          //     this.$store.state.site,
-          //     response,
-          //     samplesList
-          //   );
-          // }
-
           res.data.data.forEach(element => {
+
             temp = element.datum.split("-");
             datum =
               temp[2].substring(0, 2) +
@@ -1681,18 +1683,41 @@ export default {
 
             // var datRodjenja = element.jmbg.substring(0, 2) + "." + element.jmbg.substring(2, 4) + "." + element.godiste + '.'
 
-            printEPL(
-              element.patient,
-              element.sid,
-              element.pid,
-              element.godiste,
-              datum,
-              element.link,
-              element.code,
-              this.$store.state.site,
-              undefined,
-              undefined
-            );
+            if(element.code === "Korona virus"){
+
+                [1,2,3].forEach(function(i) {
+
+                  printEPL(
+                    element.patient,
+                    element.sid,
+                    element.pid,
+                    element.godiste,
+                    datum,
+                    element.link,
+                    element.code,
+                    "5bd40c16020d6d21bbaf610c", // PZU Muminović, $store.state.site: 5bd40c16020d6d21bbaf610c
+                    element.jmbg,
+                  ) 
+
+                });
+
+                
+
+            }else{
+
+              printEPL(
+                element.patient,
+                element.sid,
+                element.pid,
+                element.godiste,
+                datum,
+                element.link,
+                element.code,
+                "5bd40c16020d6d21bbaf610c", // PZU Muminović, $store.state.site: 5bd40c16020d6d21bbaf610c
+                element.jmbg,
+              ) 
+
+            }
           });
           router.push("/pacijenti/pregled/");
         });

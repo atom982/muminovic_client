@@ -486,22 +486,43 @@ module.exports = {
           break;
         case "Ph":
           return [
+
             test,
             rezultat,
-            "",
+            interpretacija.referentniIntervalStandard(
+              rezultat,
+              jedinica,
+              dref,
+              gref
+            )[0],
             jedinica,
             dref.replace("-", "") + " - " + gref.replace("-", ""),
-            "No Class"
+            interpretacija.referentniIntervalStandard(
+              rezultat,
+              jedinica,
+              dref,
+              gref
+            )[1]
           ];
           break;
         case "Specifična težina":
           return [
             test,
             rezultat,
-            "",
+            interpretacija.referentniIntervalStandard(
+              rezultat,
+              jedinica,
+              dref,
+              gref
+            )[0],
             jedinica,
             dref.replace("-", "") + " - " + gref.replace("-", ""),
-            "No Class"
+            interpretacija.referentniIntervalStandard(
+              rezultat,
+              jedinica,
+              dref,
+              gref
+            )[1]
           ];
           break;
         case "Glukoza":

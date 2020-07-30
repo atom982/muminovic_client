@@ -1301,8 +1301,7 @@ export default {
             link,
             res.data.code,
             this.$store.state.site,
-            undefined,
-            undefined
+            res.data.jmbg,
           );
         });
     },
@@ -1856,6 +1855,16 @@ export default {
 
         var opcije = null;
 
+        var noResult = true;
+
+        if (event.target.id === element.labassay._id) {
+          element.rezultat.forEach(analit => {
+            if (analit.rezultat[0].rezultat_f.trim() != "") {
+              noResult = false;
+            }
+          });
+        }
+
         switch (this.$store.state.site) {
           case "5bc71402bf21a379083d6e07": // Med Lab, $store.state.site: 5bc71402bf21a379083d6e07
             opcije = m_izbornik.data;
@@ -1923,7 +1932,9 @@ export default {
                 analit.rezultat[0].rezultat_f === "" &&
                 single.select_options != undefined
               ) {
-                single.rezultat = single.select_options[1];
+                if (noResult) {
+                  single.rezultat = single.select_options[1];
+                }
               }
             }
 

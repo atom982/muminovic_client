@@ -8,7 +8,7 @@ let data = {
   // Opšti pregled urina
   o01: ["", "bistar", "lagano zamućen", "krvav", "mutan"], 
   o02: ["", "žut", "svjetlo žut", "tamno žut", "smeđ"],
-  o10: ["", "5", "4", "6", "7", "8", "9"],
+  o10: ["", "5", "4", "6", "6.5", "7", "8", "9"],
   o13: ["", "1.020", "1.000", "1.005", "1.010", "1.015", "1.025", "1.030"],
   o09: ["", "normalan", "pozitivan", "jako pozitivan"],
   o06: ["", "negativan", "pozitivan", "jako pozitivan"],
@@ -49,6 +49,7 @@ let rez = {
   Glijadin_IgG: ["", "negativan", "pozitivan"], // Anti Gliadin IgG
   tTg_IgA: ["", "negativan", "pozitivan"], // Anti TTG IgA
   tTg_IgG: ["", "negativan", "pozitivan"], // Anti TTG IgG
+  PCR_korona: ["", "negativan", "pozitivan"], // PCR korona
   COV2_IgG: ["", "negativan", "pozitivan"], // COV-2 IgG
   Anti_IF: ["", "negativan", "pozitivan"], // Anti Intrinsic Factor
   Anti_MCV: ["", "negativan", "pozitivan"], // Anti - MCV IgG

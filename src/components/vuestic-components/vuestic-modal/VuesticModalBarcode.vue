@@ -189,7 +189,7 @@ export default {
       http.get('uzorci/barcode/' + this.sid + '?token=' + this.$store.state.token + '&site=' + this.$store.state.site, {
   
       }).then(res => {   
-        // console.log(res.data)       
+        console.log(res.data)       
   
         printEPL(res.data.name + ' ' + res.data.surname, this.sid, res.data.pacijentRBr, 
         res.data.godiste, res.data.datum, link, res.data.code, this.$store.state.site)

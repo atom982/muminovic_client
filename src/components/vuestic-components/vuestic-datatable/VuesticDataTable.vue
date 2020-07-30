@@ -783,6 +783,8 @@ var datePost = niz[0].datum
               {}
             )
             .then(res => {
+
+              
               res.data.results.forEach(element => {
                 var godiste = element.patient.jmbg.substring(4, 7);
                 switch (godiste[0]) {
@@ -803,7 +805,6 @@ var datePost = niz[0].datum
                   datum[2] + "." + datum[1] + "." + datum[0].substring(2, 4);
                 datum = datum + "" + vrijeme;
                 var link = server + "images/barcodes/" + element.id + ".png";
-                
                 printEPL(
                   element.patient.ime + " " + element.patient.prezime,
                   element.id,
@@ -813,8 +814,7 @@ var datePost = niz[0].datum
                   link,
                   element.sample.code,
                   this.$store.state.site,
-                  undefined,
-                  undefined 
+                  element.patient.jmbg,
                 );
               });
             });
@@ -909,7 +909,8 @@ var datePost = niz[0].datum
             res.data.datum,
             event.target.id,
             res.data.code,
-            this.$store.state.site
+            this.$store.state.site,
+            res.data.jmbg,
           );
         });
     },
