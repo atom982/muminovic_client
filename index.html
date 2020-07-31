@@ -52,16 +52,94 @@
     ) {
 
       if(code === "Korona virus"){
-        console.log("Korona virus: " + jmbg)
 
-        // PCR test na korona virus
+        //
+        //
+        //
 
-        // ime i prezime
-        // matični broj
-        // Datum unosa u LIS
+        var Pacijent = ime
+        var JMBG = jmbg
+        var Datum = datum.slice(0, 6) + "20" + datum.slice(6, 8) + " " + datum.slice(-5);
 
+        //
 
+        // console.log("PCR test na korona virus")
+        // console.log("Pacijent: " + Pacijent)
+        // console.log("JMBG: " + JMBG)
+        // console.log("Datum: " + Datum)
 
+        //
+
+        var printer = "";
+        var secondprinter = "\\\laboratorija-pc\\Zebra";
+
+        //
+
+        qz.printers
+          .find()
+          .then(function(data) {
+            var list = [];
+            for (var i = 0; i < data.length; i++) {
+              list.push(data[i]);
+            }
+            list.forEach(element => {
+              if (element === "Zebra") {
+                printer = "Zebra";
+              }
+            });
+           
+            if (printer === "Zebra") {
+              console.warn("Zebra printer found");
+              var config = qz.configs.create(printer, {
+                size: {
+                  width: 50,
+                  height: 25
+                },
+                units: "mm"
+              });
+              qz.print(config, [
+                "\nN\n",
+                "q" + "320" + "\n",
+                "Q" + "200,24" + "\n",
+                'A25,10,0,2,1,1,N,"' + "PCR test na korona virus" + '"\n',
+                'A25,40,0,2,1,1,N,"' + "Pacijent: " + Pacijent + '"\n',
+                'A25,70,0,2,1,1,N,"' + "JMBG: " + JMBG + '"\n',
+                'A25,110,0,2,1,1,N,"' + "Datum: " + Datum + '"\n',
+                "\nP1,1\n"
+              ]).catch(function(e) {
+                console.error(e);
+              });
+            } else {
+              console.warn("Zebra printer NOT found");
+              var config = qz.configs.create(secondprinter, {
+                size: {
+                  width: 50,
+                  height: 25
+                },
+                units: "mm"
+              });
+              qz.print(config, [
+                "\nN\n",
+                "q" + "320" + "\n",
+                "Q" + "200,24" + "\n",
+                'A25,10,0,2,1,1,N,"' + "PCR test na korona virus" + '"\n',
+                'A25,40,0,2,1,1,N,"' + "Pacijent: " + Pacijent + '"\n',
+                'A25,70,0,2,1,1,N,"' + "JMBG: " + JMBG + '"\n',
+                'A25,110,0,2,1,1,N,"' + "Datum: " + Datum + '"\n',
+                "\nP1,1\n"
+              ]).catch(function(e) {
+                console.error(e);
+              });
+            }
+          })
+          .catch(function(e) {
+            console.error(e);
+          });
+
+          //
+          //
+          //
+          
       }else{
 
         var date = datum.slice(0, 8) + " " + datum.slice(-5);
