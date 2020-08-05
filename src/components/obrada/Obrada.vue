@@ -2514,6 +2514,14 @@ export default {
         element.rezultat = element.rezultat.replace(/,/g, ".");
       });
 
+      var DE = false
+
+      if(rezultati.length === 1 && rezultati[0].labassay_id == "5ec412c9074f54d3e2d5a130"){
+        console.log("COV2 IgG, Anti SARS-CoV2-IgG")
+        DE = true
+      }
+
+
       http
         .post("/rezultati/odobravanje/sacuvaj/" + this.$store.state.sid, {
           email: this.$store.state.userId,
@@ -2544,6 +2552,9 @@ export default {
               var sample = [];
               sample.push(this.report._id);
 
+              
+
+              
               http
                 .post("nalazi/create", {
                   token: this.$store.state.token,
@@ -2556,7 +2567,8 @@ export default {
                   status: false,
                   idNalaza: "",
                   location: "/samples",
-                  naziv: this.report.sid
+                  naziv: this.report.sid,
+                  de: DE
                 })
                 .then(res => {
                   http

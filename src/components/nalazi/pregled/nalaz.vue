@@ -176,6 +176,15 @@ export default {
         )
         .then(res => {
           if (res.data.success) {
+
+            
+            /* if(res.data.nalaz.rows[0] != undefined && 
+                res.data.nalaz.rows[0][0].rezultat[0] != undefined && 
+                res.data.nalaz.rows[0][0].rezultat[0].includes("Anti SARS-CoV2-IgG")
+              ){
+              this.send = true;
+            } */
+
             this.patientID = res.data.nalaz.patient._id;
             this.email = res.data.nalaz.patient.email.trim();
             this.oldMail = res.data.nalaz.patient.email.trim();
