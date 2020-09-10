@@ -2516,11 +2516,12 @@ export default {
 
       var DE = false
 
-      if(rezultati.length === 1 && rezultati[0].labassay_id == "5ec412c9074f54d3e2d5a130"){
+      if((rezultati[1].labassay_id == "5ec412c9074f54d3e2d5a130" || rezultati[0].labassay_id == "5ec412c9074f54d3e2d5a130") && 
+      (rezultati[1].labassay_id == "5f5a2f47c0508983dac17334" || rezultati[0].labassay_id == "5f5a2f47c0508983dac17334")){
         console.log("COV2 IgG, Anti SARS-CoV2-IgG")
+        console.log("COV2 IgM, Anti SARS-CoV2-IgM")
         DE = true
       }
-
 
       http
         .post("/rezultati/odobravanje/sacuvaj/" + this.$store.state.sid, {

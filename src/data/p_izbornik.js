@@ -50,7 +50,10 @@ let rez = {
   tTg_IgA: ["", "negativan", "pozitivan"], // Anti TTG IgA
   tTg_IgG: ["", "negativan", "pozitivan"], // Anti TTG IgG
   PCR_korona: ["", "negativan", "pozitivan"], // PCR korona
+
   COV2_IgG: ["", "negativan", "pozitivan"], // COV-2 IgG
+  COV2_IgM: ["", "negativan", "pozitivan"], // COV-2 IgM
+
   Anti_IF: ["", "negativan", "pozitivan"], // Anti Intrinsic Factor
   Anti_MCV: ["", "negativan", "pozitivan"], // Anti - MCV IgG
   Heliko: ["", "negativan", "pozitivan"], // Helicobacter pylori
