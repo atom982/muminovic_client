@@ -1,5 +1,5 @@
 module.exports = {
-  odrediDefaultReferenceAnalitNe: function(rezultat, jedinica, dref, gref) {
+  odrediDefaultReferenceAnalitNe: function (rezultat, jedinica, dref, gref) {
     if (dref === "0" && gref === "0") {
       return "Nije broj";
     } else if (Number(gref) > 0) {
@@ -9,7 +9,7 @@ module.exports = {
     }
   },
 
-  referentniIntervalStandard: function(rezultat, jedinica, dref, gref) {
+  referentniIntervalStandard: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -36,7 +36,7 @@ module.exports = {
     }
   },
 
-  nijeBrojStandard: function(rezultat, jedinica, dref, gref) {
+  nijeBrojStandard: function (rezultat, jedinica, dref, gref) {
     if (rezultat === "") {
       return [" ", "No Class"];
     } else if (
@@ -54,7 +54,7 @@ module.exports = {
     }
   },
 
-  nijeBrojNereaktivan: function(rezultat, jedinica, dref, gref) {
+  nijeBrojNereaktivan: function (rezultat, jedinica, dref, gref) {
     if (rezultat === "") {
       return [" ", "No Class"];
     } else if (rezultat === "reaktivan") {
@@ -66,7 +66,7 @@ module.exports = {
     }
   },
 
-  nijeBrojNegativan: function(rezultat, jedinica, dref, gref) {
+  nijeBrojNegativan: function (rezultat, jedinica, dref, gref) {
     if (rezultat === "") {
       return [" ", "No Class"];
     } else if (
@@ -82,7 +82,45 @@ module.exports = {
     }
   },
 
-  nijeBrojNormalan: function(rezultat, jedinica, dref, gref) {
+  //
+
+  CoV2IgG: function (rezultat, jedinica, dref, gref) {
+    if (rezultat === "") {
+      return [" ", "No Class"];
+    } else if (rezultat.includes("pozitivan")) {
+      return ["pozitivan", "Red"];
+    } else if (!isNaN(rezultat)) {
+      if (rezultat < 1.4) {
+        return [" ", "Green"];
+      } else {
+        return ["pozitivan", "Red"];
+      }
+    } else if (rezultat.includes("negativan")) {
+      return [" ", "Green"];
+    } else {
+      return [" ", "No Class"];
+    }
+  },
+
+  CoV2IgM: function (rezultat, jedinica, dref, gref) {
+    if (rezultat === "") {
+      return [" ", "No Class"];
+    } else if (rezultat.includes("pozitivan")) {
+      return ["pozitivan", "Red"];
+    } else if (!isNaN(rezultat)) {
+      if (rezultat < 1.0) {
+        return [" ", "Green"];
+      } else {
+        return ["pozitivan", "Red"];
+      }
+    } else if (rezultat.includes("negativan")) {
+      return [" ", "Green"];
+    } else {
+      return [" ", "No Class"];
+    }
+  },
+
+  nijeBrojNormalan: function (rezultat, jedinica, dref, gref) {
     if (rezultat === "") {
       return [" ", "No Class"];
     } else if (
@@ -98,7 +136,7 @@ module.exports = {
     }
   },
 
-  granicniIntervalVeceOd: function(rezultat, jedinica, dref, gref) {
+  granicniIntervalVeceOd: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -118,7 +156,7 @@ module.exports = {
     }
   },
 
-  granicniIntervalGreater: function(rezultat, jedinica, dref, gref) {
+  granicniIntervalGreater: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -140,7 +178,7 @@ module.exports = {
     }
   },
 
-  granicniIntervalManjeOd: function(rezultat, jedinica, dref, gref) {
+  granicniIntervalManjeOd: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -162,7 +200,7 @@ module.exports = {
     }
   },
 
-  referentniIntervalPrisutno: function(rezultat, jedinica, dref, gref) {
+  referentniIntervalPrisutno: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -182,7 +220,12 @@ module.exports = {
     }
   },
 
-  referentniIntervalPrisutnoGljivice: function(rezultat, jedinica, dref, gref) {
+  referentniIntervalPrisutnoGljivice: function (
+    rezultat,
+    jedinica,
+    dref,
+    gref
+  ) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -204,22 +247,22 @@ module.exports = {
     }
   },
 
-  nijeBrojKrvnaGrupa: function(rezultat, jedinica, dref, gref) {
+  nijeBrojKrvnaGrupa: function (rezultat, jedinica, dref, gref) {
     return [" ", "No Class"];
   },
 
-  nijeBrojRhFaktor: function(rezultat, jedinica, dref, gref) {
+  nijeBrojRhFaktor: function (rezultat, jedinica, dref, gref) {
     return [" ", "No Class"];
   },
-  nijeBrojHOMAi: function(rezultat, jedinica, dref, gref) {
-    return [" ", "No Class"];
-  },
-
-  opisniRezultat: function(rezultat, jedinica, dref, gref) {
+  nijeBrojHOMAi: function (rezultat, jedinica, dref, gref) {
     return [" ", "No Class"];
   },
 
-  OPUrinIzgled: function(rezultat, jedinica, dref, gref) {
+  opisniRezultat: function (rezultat, jedinica, dref, gref) {
+    return [" ", "No Class"];
+  },
+
+  OPUrinIzgled: function (rezultat, jedinica, dref, gref) {
     if (rezultat === "") {
       return [" ", "No Class"];
     } else if (rezultat === "bistar") {
@@ -229,7 +272,7 @@ module.exports = {
     }
   },
 
-  OPUrinBoja: function(rezultat, jedinica, dref, gref) {
+  OPUrinBoja: function (rezultat, jedinica, dref, gref) {
     if (rezultat === "") {
       return [" ", "No Class"];
     } else if (rezultat === "žut") {
@@ -239,15 +282,15 @@ module.exports = {
     }
   },
 
-  SedimentMaloDostaMasa: function(rezultat, jedinica, dref, gref) {
+  SedimentMaloDostaMasa: function (rezultat, jedinica, dref, gref) {
     if (rezultat === "") {
       return [" ", "No Class"];
     } else {
       return ["H", "Red"];
     }
   },
-  
-  SedimentLeukocitiEritrociti: function(rezultat, jedinica, dref, gref) {
+
+  SedimentLeukocitiEritrociti: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes("-")) {
       rezultat = rezultat.split("-")[1].trim();
     }
@@ -263,7 +306,7 @@ module.exports = {
     }
   },
 
-  SedimentLeukocitiEritrocitiMedLab: function(rezultat, jedinica, dref, gref) {
+  SedimentLeukocitiEritrocitiMedLab: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes("-")) {
       rezultat = rezultat.split("-")[1].trim();
     }
@@ -279,7 +322,7 @@ module.exports = {
     }
   },
 
-  SedimentLeukocitiEritrocitiMedLabDosta: function(
+  SedimentLeukocitiEritrocitiMedLabDosta: function (
     rezultat,
     jedinica,
     dref,
@@ -302,7 +345,7 @@ module.exports = {
     }
   },
 
-  SedimentSveOsimNula: function(rezultat, jedinica, dref, gref) {
+  SedimentSveOsimNula: function (rezultat, jedinica, dref, gref) {
     if (rezultat === "") {
       return [" ", "No Class"];
     } else if (!isNaN(rezultat) && parseFloat(rezultat) === 0) {
@@ -314,7 +357,7 @@ module.exports = {
 
   // BIH MEDICINSKI LABORATORIJ (Sarajevo - Stup), $store.state.site: 5c69f68c338fe912f99f833b
 
-  Sedimentacija: function(rezultat, jedinica, dref, gref) {
+  Sedimentacija: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes("/")) {
       rezultat = rezultat.split("/")[0].trim();
     }
@@ -330,7 +373,7 @@ module.exports = {
     }
   },
 
-  nijeBrojNegativanPozGr: function(rezultat, jedinica, dref, gref) {
+  nijeBrojNegativanPozGr: function (rezultat, jedinica, dref, gref) {
     if (rezultat === "") {
       return [" ", "No Class"];
     } else if (rezultat.includes("pozitivan") || rezultat.includes("pos")) {
@@ -342,7 +385,7 @@ module.exports = {
     }
   },
 
-  granicniIntervalNegGrPoz: function(rezultat, jedinica, dref, gref) {
+  granicniIntervalNegGrPoz: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -367,7 +410,7 @@ module.exports = {
     }
   },
 
-  granicniIntervalBiHLabHDL: function(rezultat, jedinica, dref, gref) {
+  granicniIntervalBiHLabHDL: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -392,7 +435,7 @@ module.exports = {
     }
   },
 
-  granicniIntervalBiHLabLDL: function(rezultat, jedinica, dref, gref) {
+  granicniIntervalBiHLabLDL: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -417,7 +460,7 @@ module.exports = {
     }
   },
 
-  granicniIntervalCALPRO: function(rezultat, jedinica, dref, gref) {
+  granicniIntervalCALPRO: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -442,7 +485,7 @@ module.exports = {
     }
   },
 
-  granicniIntervalInfekcija: function(rezultat, jedinica, dref, gref) {
+  granicniIntervalInfekcija: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -467,7 +510,7 @@ module.exports = {
     }
   },
 
-  granicniIntervalTSH: function(rezultat, jedinica, dref, gref) {
+  granicniIntervalTSH: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -492,7 +535,7 @@ module.exports = {
     }
   },
 
-  granicniIntervalfPSA: function(rezultat, jedinica, dref, gref) {
+  granicniIntervalfPSA: function (rezultat, jedinica, dref, gref) {
     if (rezultat.includes(",")) {
       rezultat.replace(",", ".").trim();
     }
@@ -515,5 +558,5 @@ module.exports = {
     } else {
       return [" ", "Green"];
     }
-  }
+  },
 };

@@ -51,8 +51,8 @@ let rez = {
   tTg_IgG: ["", "negativan", "pozitivan"], // Anti TTG IgG
   PCR_korona: ["", "negativan", "pozitivan"], // PCR korona
 
-  COV2_IgG: ["", "negativan", "pozitivan"], // COV-2 IgG
-  COV2_IgM: ["", "negativan", "pozitivan"], // COV-2 IgM
+  // COV2_IgG: ["", "negativan", "pozitivan"], 
+  // COV2_IgM: ["", "negativan", "pozitivan"], 
 
   Anti_IF: ["", "negativan", "pozitivan"], // Anti Intrinsic Factor
   Anti_MCV: ["", "negativan", "pozitivan"], // Anti - MCV IgG
