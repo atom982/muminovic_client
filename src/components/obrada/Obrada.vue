@@ -17,7 +17,7 @@
             {{ ' NAZAD'}}
           </button>
           <button
-            v-show="email_button && verificiran"
+            v-show="(email_button || !email_button) && verificiran"
             class="btn btn-secondary btn-sm pull-right"
             :disabled="!Email(email)"
             @click.prevent="MailDialog()"
@@ -26,7 +26,7 @@
             {{ ' Pošalji'}}
           </button>
 
-          <div v-show="email_button && verificiran" class="form-group with-icon-left pull-right">
+          <div v-show="(email_button || !email_button) && verificiran" class="form-group with-icon-left pull-right">
             <div class="input-group">
               <input
                 size="40"
