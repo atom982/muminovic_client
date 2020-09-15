@@ -258,9 +258,9 @@ export default {
       var a = this.timestamp
       var b = "/"
 
-      if(this.path.includes("samples/")){
+      if(this.$route.params.id.length === 10){
         b = "samples/"
-        a = this.path.substring(8, 18)
+        a = this.$route.params.id
 
       }
       console.log(a)
