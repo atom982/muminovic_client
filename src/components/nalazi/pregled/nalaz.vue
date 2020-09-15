@@ -254,14 +254,26 @@ export default {
     },
     SendMail(event) {
       // console.warn("Email Sending");
+
+      var a = this.timestamp
+      var b = "/"
+
+      if(this.path.includes("samples/")){
+        b = "samples/"
+        a = this.path.substring(8, 18)
+
+      }
+      console.log(a)
+      console.log(b)
+
       http
         .post("nalazi/mail", {
           token: this.$store.state.token,
           site: this.$store.state.site,
           email: this.email,
-          timestamp: this.timestamp,
-          location: "/",
-          naziv: this.timestamp
+          timestamp: a,
+          location: b,
+          naziv: a
         })
         .then(res => {
           if (res.data.success) {
