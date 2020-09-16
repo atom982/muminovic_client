@@ -17,7 +17,7 @@
             {{ ' NAZAD'}}
           </button>
           <button
-            v-show="email_button && verificiran"
+            v-show="verificiran"
             class="btn btn-secondary btn-sm pull-right"
             :disabled="!Email(email)"
             @click.prevent="MailDialog()"
@@ -26,7 +26,7 @@
             {{ ' Pošalji'}}
           </button>
 
-          <div v-show="email_button && verificiran" class="form-group with-icon-left pull-right">
+          <div v-show="verificiran" class="form-group with-icon-left pull-right">
             <div class="input-group">
               <input
                 size="40"
@@ -1973,6 +1973,19 @@ export default {
     },
     SendMail(email) {
       // Vue Loading Overlay Component
+
+      if(this.path.includes("samples/")){
+
+        var a = this.path.substring(8, 18)
+        var b = "samples/"
+
+      }else{
+
+        var a = this.timestamp
+        var b = "/"
+
+      }
+
       this.isLoading = true;
 
       http
@@ -1980,9 +1993,9 @@ export default {
           token: this.$store.state.token,
           site: this.$store.state.site,
           email: email,
-          timestamp: this.timestamp,
-          location: "/",
-          naziv: this.timestamp
+          timestamp: a,
+          location: b,
+          naziv: a
         })
         .then(res => {
           // Vue Loading Overlay Component

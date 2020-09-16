@@ -9,7 +9,7 @@
               {{ ' NAZAD'}}
             </button>
             <button
-              v-if="ifPdf && send"
+              v-if="ifPdf"
               class="btn btn-secondary btn-sm pull-right"
               :disabled="!Email(email) || $route.params.id.length > 13"
               @click.prevent="MailDialog()"
@@ -17,7 +17,7 @@
               <span class="glyphicon glyphicon-send"></span>
               {{ ' pošalji'}}
             </button>
-            <div v-if="ifPdf && send" class="form-group with-icon-left pull-right">
+            <div v-if="ifPdf" class="form-group with-icon-left pull-right">
               <div class="input-group">
                 <input
                   size="40"
@@ -254,14 +254,30 @@ export default {
     },
     SendMail(event) {
       // console.warn("Email Sending");
+
+
+      if(this.$route.params.id.length == 10){
+
+        var a = this.$route.params.id
+        var b = "samples/"
+
+      }else{
+
+        var a = this.timestamp
+        var b = "/"
+
+      }
+
+      this.isLoading = true;
+
       http
         .post("nalazi/mail", {
           token: this.$store.state.token,
           site: this.$store.state.site,
           email: this.email,
-          timestamp: this.timestamp,
-          location: "/",
-          naziv: this.timestamp
+          timestamp: a,
+          location: b,
+          naziv: a
         })
         .then(res => {
           if (res.data.success) {
