@@ -36,27 +36,21 @@
       </vuestic-widget>
     </div>
 
+  
+
+
     <div class="col-md-6 col-xl-3">
       <vuestic-widget class="info-widget brand-danger">
         <div class="info-widget-inner">
-          <div class="info-widget-inner has-chart">
-            <div class="stats">
+          <div class="stats">
               <div v-if="!loadedData" class="stats-number">{{'...'}}</div>
-              <div v-if="loadedData" class="stats-number">{{kompletirano_testova}}</div>
-              <div class="stats-title">{{'Kompletirano testova'}}</div>
+              <div v-if="loadedData" class="stats-number">{{uzoraka_danas - kompletirano_uzoraka}}</div>
+              <div class="stats-title">{{'Neverificirano uzoraka'}}</div>
             </div>
-            <div class="chart-container">
-              <vuestic-progress-bar
-                type="circle"
-                ref="circleProgress"
-                :colorName="'white'"
-                :backgroundColorName="'danger'"
-                :startColorName="'danger'"
-              ></vuestic-progress-bar>
-            </div>
-          </div>
         </div>
       </vuestic-widget>
+
+     
     </div>
 
     <div class="col-md-6 col-xl-3">
