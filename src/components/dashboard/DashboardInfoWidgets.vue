@@ -30,7 +30,7 @@
               <i class="ion ion-arrow-up-c text-primary stats-icon"></i>
               {{kompletirano_uzoraka}}
             </div>
-            <div class="stats-title">{{'Kompletirano uzoraka'}}</div>
+            <div class="stats-title">{{'Verificirano uzoraka'}}</div>
           </div>
         </div>
       </vuestic-widget>
@@ -71,7 +71,7 @@
               <i class="ion ion-md-people stats-icon icon-wide" @click.prevent="PatientsData"></i>
               {{pacijenata}}
             </div>
-            <div class="stats-title">{{'Pacijenata'}}</div>
+            <div class="stats-title">{{'Prijema'}}</div>
           </div>
         </div>
       </vuestic-widget>
@@ -123,13 +123,14 @@ export default {
         if (res.data.json.empty != undefined) {
           this.uzoraka_danas = res.data.json.ukupnoUzoraka;
           this.kompletirano_uzoraka = res.data.json.obradjenUzorak;
-          this.kompletirano_testova = res.data.json.realizovanoTestova;
-          var perCompleted = 0;
-          var perCompleted =
-            res.data.json.realizovanoTestova / res.data.json.ukupnoTestova;
-          this.$refs.circleProgress.$data.value = Math.round(
-            perCompleted * 100
-          );
+          // this.kompletirano_testova = res.data.json.realizovanoTestova;
+          this.kompletirano_testova = "-";
+          var perCompleted = "-";
+          // var perCompleted =
+          //   res.data.json.realizovanoTestova / res.data.json.ukupnoTestova;
+          // this.$refs.circleProgress.$data.value = Math.round(
+          //   perCompleted * 100
+          // );
           this.uslovLoadedData = true;
         }
       })
@@ -149,8 +150,11 @@ export default {
         {}
       )
       .then(res => {
+
+        console.log(res.data)
         if (res.data.jmbg != undefined) {
-          this.pacijenata = res.data.jmbg.length;
+          // this.pacijenata = res.data.jmbg;
+          this.pacijenata = res.data.jmbg[0];
           this.uslovLoadedPatients = true;
         }
       })
@@ -162,7 +166,8 @@ export default {
   },
   methods: {
     PatientsData() {
-      this.$refs.staticModalPatientsData.open();
+      // this.$refs.staticModalPatientsData.open();
+      console.log("Patients Dialog Disabled.")
     }
   }
 };

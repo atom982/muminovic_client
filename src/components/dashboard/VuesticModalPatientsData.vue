@@ -181,9 +181,9 @@ export default {
     if (this.show) {
       document.body.className += " modal-open";
     }
-    this.pripremiPodatkeLineChart(res => {
-      this.LineChartData = res;
-    });
+    // this.pripremiPodatkeLineChart(res => {
+    //   this.LineChartData = res;
+    // });
   },
   beforeDestroy() {
     document.body.className = document.body.className.replace(
@@ -208,9 +208,9 @@ export default {
       }
     },
     lokacija() {
-      this.pripremiPodatkeLineChart(res => {
-        this.LineChartData = res;
-      });
+      // this.pripremiPodatkeLineChart(res => {
+      //   this.LineChartData = res;
+      // });
     }
   },
   methods: {

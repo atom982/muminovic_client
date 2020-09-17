@@ -101,20 +101,18 @@ export default {
             } else {
               let palette = store.getters.palette;
               var podatakSample = {
-                labels: ["Zaprimljen", "U obradi", "Realizovan", "Odobren"],
+                labels: ["Zaprimljen", "Verificiran"],
                 datasets: [
                   {
                     label: "Broj uzoraka",
                     backgroundColor: [
                       palette.danger,
-                      palette.warning,
-                      palette.info,
+                     
                       palette.primary
                     ],
                     data: [
                       res.data.json.zaprimljenUzorak,
-                      res.data.json.uObradiUzorak,
-                      res.data.json.realizovanUzorak,
+                      
                       res.data.json.obradjenUzorak
                     ]
                   }
@@ -163,7 +161,7 @@ export default {
                     data: res.data.barData.data
                   },
                   {
-                    label: "Odobreno",
+                    label: "Verificirano",
                     backgroundColor: palette.pale,
                     borderColor: palette.transparent,
                     data: res.data.barData.obr
@@ -175,7 +173,7 @@ export default {
                 responsive: true,
                 title: {
                   display: true,
-                  text: "Zadnjih 30 dana"
+                  text: "Danas"
                 },
                 scales: {
                   xAxes: [
@@ -216,7 +214,7 @@ export default {
                     data: res.data.barData.data
                   },
                   {
-                    label: "Odobreno",
+                    label: "Verificirano",
                     backgroundColor: palette.primary,
                     borderColor: palette.transparent,
                     data: res.data.barData.obr
@@ -228,7 +226,7 @@ export default {
                 responsive: true,
                 title: {
                   display: true,
-                  text: "Zadnjih 30 dana"
+                  text: "Danas"
                 },
                 scales: {
                   xAxes: [
