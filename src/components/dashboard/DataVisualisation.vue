@@ -54,10 +54,13 @@ export default {
       podatakChart: {},
       loadedChart: false,
       DonutChartOptions: {},
-      VerticalBarChartOptions: {}
+      VerticalBarChartOptions: {},
+      danas: "Danas"
     };
   },
   created() {
+    this.date_function()
+
     this.pripremiPodatkeDonutChart(res => {
       this.podatakSample = res;
     });
@@ -66,6 +69,17 @@ export default {
     });
   },
   methods: {
+    date_function: function () {   
+            var currentDate = new Date();
+            // console.log(currentDate);
+  
+            var formatted_date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+            console.log(formatted_date.slice(0,4));
+            console.log(formatted_date.slice(5,7));
+            console.log(formatted_date.slice(8,10));  
+            
+            this.danas = formatted_date.slice(8,10) + "." + formatted_date.slice(5,7) + "." + formatted_date.slice(0,4) + ". godine"
+        },
     pripremiPodatkeDonutChart: function(callback) {
       http
         .get(
@@ -95,18 +109,18 @@ export default {
                 responsive: true,
                 title: {
                   display: true,
-                  text: "Danas"
+                  text: this.danas
                 }
               };
             } else {
               let palette = store.getters.palette;
               var podatakSample = {
-                labels: ["Zaprimljen", "Verificiran"],
+                labels: ["Neverificiran", "Verificiran"],
                 datasets: [
                   {
                     label: "Broj uzoraka",
                     backgroundColor: [
-                      palette.danger,
+                      palette.warning,
                      
                       palette.primary
                     ],
@@ -123,7 +137,7 @@ export default {
                 responsive: true,
                 title: {
                   display: true,
-                  text: "Danas"
+                  text: this.danas
                 }
               };
             }
@@ -173,7 +187,7 @@ export default {
                 responsive: true,
                 title: {
                   display: true,
-                  text: "Danas"
+                  text: ""
                 },
                 scales: {
                   xAxes: [
@@ -226,7 +240,7 @@ export default {
                 responsive: true,
                 title: {
                   display: true,
-                  text: "Danas"
+                  text: ""
                 },
                 scales: {
                   xAxes: [

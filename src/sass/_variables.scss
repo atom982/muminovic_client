@@ -180,6 +180,9 @@ $widget-body-no-header-height: 100%;
 $widget-body-with-header-height: calc(100% - #{$widget-header-height});
 $widget-mb: 1.875rem;
 $info-widget-border: 0.5rem solid $brand-primary;
+$warning-widget-border: 0.5rem solid $brand-warning;
+$danger-widget-border: 0.5rem solid $brand-danger;
+$blue-widget-border: 0.5rem solid $brand-info;
 
 // Links
 $link-color: $brand-primary;

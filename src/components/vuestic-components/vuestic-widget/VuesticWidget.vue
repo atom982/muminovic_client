@@ -258,6 +258,12 @@ export default {
     box-shadow: $widget-danger-shadow;
   }
 
+  &.brand-warning {
+    background-color: $brand-warning;
+    color: $white;
+    box-shadow: $widget-danger-shadow;
+  }
+
   &.info-widget {
     border-top: $info-widget-border;
 
@@ -267,6 +273,58 @@ export default {
 
     &.brand-danger {
       border-top-color: $brand-danger;
+    }
+
+    &.brand-warning {
+      border-top-color: $brand-warning;
+    }
+  }
+
+    &.warning-widget {
+    border-top: $warning-widget-border;
+
+    &.brand-info {
+      border-top-color: $brand-info;
+    }
+
+    &.brand-danger {
+      border-top-color: $brand-danger;
+    }
+
+    &.brand-warning {
+      border-top-color: $brand-warning;
+    }
+  }
+
+  &.blue-widget {
+    border-top: $blue-widget-border;
+
+    &.brand-info {
+      border-top-color: $brand-info;
+    }
+
+    &.brand-danger {
+      border-top-color: $brand-danger;
+    }
+
+    &.brand-warning {
+      border-top-color: $brand-warning;
+    }
+  }
+
+  &.danger-widget {
+    border-top: $danger-widget-border;
+
+    &.brand-info {
+      border-top-color: $brand-info;
+    }
+
+    &.brand-danger {
+      border-top-color: $brand-danger;
+    }
+
+    &.brand-warning {
+      border-top-color: $brand-warning;
     }
   }
 

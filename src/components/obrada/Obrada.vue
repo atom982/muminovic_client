@@ -37,7 +37,7 @@
                 required
               >
               <i class="fa fa-envelope-o icon-left input-icon"></i>
-              <label class="control-label" for="input-icon-left">{{'Email adresa'}}</label>
+              <label class="control-label" for="input-icon-left">{{'Email adresa Obrada'}}</label>
               <i class="bar"></i>
             </div>
           </div>
