@@ -74,9 +74,9 @@ export default {
             // console.log(currentDate);
   
             var formatted_date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-            console.log(formatted_date.slice(0,4));
-            console.log(formatted_date.slice(5,7));
-            console.log(formatted_date.slice(8,10));  
+            // console.log(formatted_date.slice(0,4));
+            // console.log(formatted_date.slice(5,7));
+            // console.log(formatted_date.slice(8,10));  
             
             this.danas = formatted_date.slice(8,10) + "." + formatted_date.slice(5,7) + "." + formatted_date.slice(0,4) + ". godine"
         },

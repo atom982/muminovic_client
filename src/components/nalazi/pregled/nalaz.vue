@@ -28,7 +28,7 @@
                   required
                 >
                 <i class="fa fa-envelope-o icon-left input-icon"></i>
-                <label class="control-label" for="input-icon-left">{{'Email adresa Nalaz'}}</label>
+                <label class="control-label" for="input-icon-left">{{'Email adresa'}}</label>
                 <i class="bar"></i>
               </div>
             </div>

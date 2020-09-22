@@ -158,6 +158,24 @@
                     </div>
                   </div>
                 </form>
+
+
+                 <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <loading
+            :active.sync="isLoading"
+            :can-cancel="false"
+            :on-cancel="onCancel"
+            color="#4ae387"
+            :is-full-page="fullPage"
+          ></loading>
+        </div>
+        <div class="col-md-6">
+          <button v-if="false" @click.prevent="Test">{{'Loading...'}}</button>
+        </div>
+      </div>
+    </div>
               </div>
               <!--Footer-->
               <div class="modal-footer">
@@ -167,14 +185,14 @@
                     v-if="!noButtons"
                     :class="cancelClass"
                     @click="cancel"
-                    :disabled="cancelDisabled"
+                    :disabled="isLoading"
                   >{{ cancelText }}</button>
                   <button
                     type="button"
                     v-if="!noButtons && !postoji"
                     :class="okClass"
                     @click="ok"
-                    :disabled="okDisabled"
+                    :disabled="isLoading"
                   >{{ okText }}</button>
                   <button
                     type="button"
@@ -190,8 +208,16 @@
           </div>
         </div>
         <div class="modal-backdrop"></div>
+
+        
+        
+
+
       </div>
     </transition>
+
+   
+
   </div>
 </template>
 
@@ -199,6 +225,9 @@
 import { bus } from "../../../main";
 import router from "../../../router";
 import { http } from "../../../../config/config.js";
+
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 export default {
   name: "vuestic-modal-patient",
@@ -282,8 +311,13 @@ export default {
       pacijentID: "",
       imePrezime: "",
       izvor: "",
-      izvori: ["Lična karta", "Vozačka dozvola", "Saobraćajna dozvola", "Zdravstvena knjižica", "Pasoš", "Usmeno"]
+      izvori: ["Lična karta", "Vozačka dozvola", "Saobraćajna dozvola", "Zdravstvena knjižica", "Pasoš", "Usmeno"],
+      isLoading: false,
+      fullPage: true
     };
+  },
+  components: {
+    Loading
   },
 
   computed: {
@@ -368,6 +402,16 @@ export default {
     }
   },
   methods: {
+    Test() {
+      this.isLoading = true;
+
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 2000);
+    },
+    onCancel() {
+      // console.log("User cancelled the loader.");
+    },
     listenKeyUp(event) {
       if (event.key === "Escape") {
         this.cancel();
@@ -375,6 +419,7 @@ export default {
     },
     ok() {
       this.$emit("ok");
+      // console.log("Dodaj novog pacijenta.")
       this.dodajPacijenta();
       if (this.uspjesno) {
         this.show = false;
@@ -447,6 +492,13 @@ export default {
       return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
     },
     dodajPacijenta() {
+
+      /* this.isLoading = true;
+
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 2000); */
+
       if (this.jmbg.length === 7 && this.jmbgValidateP(this.jmbg)) {
         // console.log("Privremeni matični broj.");
         var jmbgPost = this.jmbg + this.getRandomInt(10000, 99999) + "P";
@@ -567,6 +619,9 @@ export default {
                 this.chosenAdressTmp = this.chosenAdress;
               }
 
+              this.isLoading = true;
+             
+
               http
                 .post("pacijenti/unos/save", {
                   jmbg: jmbgPost,
@@ -599,6 +654,7 @@ export default {
                       className: this.className
                     });
                   } else {
+                    this.isLoading = false;
                     // this.toastText = this.$t('pacijenti.unos.UnosPacijenta.trnslr017') // Unos uspješno obavljen!
                     // this.toastIcon = 'fa-check'
                     // this.toastPosition = 'top-right'
