@@ -18,7 +18,7 @@
                 </div>
               </vuestic-collapse-patient-info>
               <div style="min-height: 8px;"></div>
-            </vuestic-accordion-patient-info>&nbsp
+            </vuestic-accordion-patient-info>&nbsp;
             <a
               style="color: #f7cc36;"
               @click.prevent="viseUnos()"
@@ -84,7 +84,7 @@
             <vuestic-accordion-samples-entry
               v-for="uzorak in uzorciList"
               :key="uzorak.tip"
-              v-if="uzorak.testoviTag.length"
+              v-show="uzorak.testoviTag.length"
             >
               <vuestic-collapse-samples-entry
                 :uzorak="uzorak.tip"
@@ -164,7 +164,7 @@
                     <ul
                       class="vuestic-page-not-found-search__list"
                       v-for="(category, index) in filterItems"
-                      v-if="category.categoryName != 'z-HIDDEN' && index < 7"
+                      v-show="category.categoryName != 'z-HIDDEN' && index < 7"
                       :key="index"
                       style="color: #f7cc36;"
                     >
@@ -194,7 +194,7 @@
                     <ul
                       class="vuestic-page-not-found-search__list"
                       v-for="(category, index) in filterItems"
-                      v-if="category.categoryName != 'z-HIDDEN' && index > 6"
+                      v-show="category.categoryName != 'z-HIDDEN' && index > 6"
                       :key="index"
                       style="color: #f7cc36;"
                     >
@@ -224,7 +224,7 @@
                     <ul
                       class="vuestic-page-not-found-search__list"
                       v-for="(categoryTmp, index) in filterItemsTmp"
-                      v-if="categoryTmp.categoryName != 'z-HIDDEN'"
+                      v-show="categoryTmp.categoryName != 'z-HIDDEN'"
                       :key="index"
                       style="color: #f7cc36;"
                     >
@@ -233,7 +233,7 @@
                         class="vuestic-page-not-found-search__list-element"
                         v-for="(item, index) in categoryTmp.items"
                         :key="index"
-                        v-if="index < 20"
+                        v-show="index < 20"
                       >
                         <!-- v-if="index < 15" -->
                         <vuestic-tooltip :options="{content: item.opis, placement: 'right'}">
@@ -603,6 +603,22 @@ export default {
           ime: "Bris",
           code: ["Korona virus"],
           tip: "Bris Korona",
+          patient: {},
+          testovi: [],
+          testoviTag: [],
+          hitno: false,
+          time: new Date(
+            new Date().getTime() - new Date().getTimezoneOffset() * 60000
+          )
+            .toISOString()
+            .slice(0, -8)
+            .replace("T", " "),
+          komentar: ""
+        },
+        {
+          ime: "Bris",
+          code: ["Bris nazofarinksa"],
+          tip: "Bris nazofarinksa",
           patient: {},
           testovi: [],
           testoviTag: [],

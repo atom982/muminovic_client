@@ -50,6 +50,7 @@ let rez = {
   tTg_IgA: ["", "negativan", "pozitivan"], // Anti TTG IgA
   tTg_IgG: ["", "negativan", "pozitivan"], // Anti TTG IgG
   PCR_korona: ["", "negativan", "pozitivan"], // PCR korona
+  COV2_Ag: ["", "negativan", "pozitivan"], // COV2_Ag
 
   // COV2_IgG: ["", "negativan", "pozitivan"], 
   // COV2_IgM: ["", "negativan", "pozitivan"], 

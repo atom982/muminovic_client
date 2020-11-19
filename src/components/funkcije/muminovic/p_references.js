@@ -230,6 +230,17 @@ module.exports = {
           interpretacija.nijeBrojNegativan(rezultat, jedinica, dref, gref)[1]
         ];
         break;
+
+      case "SARS-CoV2 Antigen": // Nije broj
+        return [
+          test,
+          rezultat,
+          interpretacija.nijeBrojNegativan(rezultat, jedinica, dref, gref)[0],
+          jedinica,
+          "negativan",
+          interpretacija.nijeBrojNegativan(rezultat, jedinica, dref, gref)[1]
+        ];
+        break;
       case "Okultno krvarenje": // Nije broj
         return [
           test,
