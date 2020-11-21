@@ -2529,8 +2529,8 @@ export default {
 
       var DE = false
 
-      if((rezultati[0].labassay_id == "5f5a2f47c0508983dac17334" || rezultati[0].labassay_id == "5ec412c9074f54d3e2d5a130")){
-        console.log("COV2 IgG, Anti SARS-CoV2-IgG || COV2 IgM, Anti SARS-CoV2-IgM")
+      if((rezultati[0].labassay_id == "5f5a2f47c0508983dac17334" || rezultati[0].labassay_id == "5ec412c9074f54d3e2d5a130" || rezultati[0].labassay_id == "5fb649241373ce50902236bd")){
+        console.log("COV2 IgG, Anti SARS-CoV2-IgG || COV2 IgM, Anti SARS-CoV2-IgM || SARS-CoV2 Antigen")
         
         DE = true
       }
