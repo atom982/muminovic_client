@@ -102,6 +102,24 @@ module.exports = {
     }
   },
 
+  CoV2IgGkv: function (rezultat, jedinica, dref, gref) {
+    if (rezultat === "") {
+      return [" ", "No Class"];
+    } else if (rezultat.includes("pozitivan")) {
+      return ["pozitivan", "Red"];
+    } else if (!isNaN(rezultat)) {
+      if (rezultat < 50) {
+        return [" ", "Green"];
+      } else {
+        return ["pozitivan", "Red"];
+      }
+    } else if (rezultat.includes("negativan")) {
+      return [" ", "Green"];
+    } else {
+      return [" ", "No Class"];
+    }
+  },
+
   CoV2IgM: function (rezultat, jedinica, dref, gref) {
     if (rezultat === "") {
       return [" ", "No Class"];

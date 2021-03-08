@@ -39,6 +39,9 @@ module.exports = {
       case 'Anti SARS-CoV2-IgM': // Nije broj
         return [test, rezultat, interpretacija.CoV2IgM(rezultat, jedinica, dref, gref)[0], jedinica, '< 1.0 - negativan', interpretacija.CoV2IgM(rezultat, jedinica, dref, gref)[1]]
         break;
+      case 'SARS-CoV2 IgG-Antitijela kvantitativno': // Nije broj
+        return [test, rezultat, interpretacija.CoV2IgGkv(rezultat, jedinica, dref, gref)[0], jedinica, '< 50 - negativan', interpretacija.CoV2IgGkv(rezultat, jedinica, dref, gref)[1]]
+        break;
       case "HBsAg": // Nije broj
         return [
           test,
