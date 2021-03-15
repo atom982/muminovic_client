@@ -12,7 +12,7 @@
               <i class="ion ion-arrow-up-c text-primary stats-icon"></i>
               {{uzoraka_danas}}
             </div>
-            <div class="stats-title">{{'Ukupnpo uzoraka'}}</div>
+            <div class="stats-title">{{'Ukupno uzoraka'}}</div>
           </div>
         </div>
       </vuestic-widget>
@@ -30,7 +30,7 @@
               <i class="ion ion-arrow-up-c text-primary stats-icon"></i>
               {{uzoraka_danas}}
             </div>
-            <div class="stats-title">{{'Ukupnpo uzoraka'}}</div>
+            <div class="stats-title">{{'Ukupno uzoraka'}}</div>
           </div>
         </div>
       </vuestic-widget>

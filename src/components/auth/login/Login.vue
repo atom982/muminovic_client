@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div v-if="true">
-      <h2>{{'auth.login.Login.trnslr001' | translate}}</h2> <!-- Dobrodošli! -->
+      <h2>{{'Poliklinika Muminović'}}</h2> <!-- Dobrodošli! -->
       <form @submit.prevent='onSubmit' name="login">
         <div class="form-group">
           <div class="input-group">
