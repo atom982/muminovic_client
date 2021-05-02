@@ -3,8 +3,26 @@
     <div class="col-md-12">
       <div class="row">
         <span style="color: #e34a4a">{{ "" }}</span>
-        <span style="font-size: 17px;color: #282828;">{{ "Podrška korisnicima: " }}</span>
-        <strong>&nbsp;<span style="font-size: 17px; color: #e34a4a;">{{ "atom.podrska@gmail.com" }}</span></strong>        
+
+        <strong
+          ><span style="font-size: 17px; color: #e34a4a">{{
+            "Podrška korisnicima:"
+          }}</span></strong
+        >
+      </div>
+
+      <div class="row">
+        <span style="color: #e34a4a">{{ "" }}</span>
+        <span style="font-size: 17px; color: #282828">{{
+          "Telefon: +387 61/339-991"
+        }}</span>
+      </div>
+
+      <div class="row">
+        <span style="color: #e34a4a">{{ "" }}</span>
+        <span style="font-size: 17px; color: #282828">{{
+          "E-mail: atom.podrska@gmail.com"
+        }}</span>
       </div>
     </div>
   </div>
