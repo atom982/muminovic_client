@@ -5,20 +5,14 @@
         <li
           @click="setDropdownDefaultIzbor()"
           v-for="item in menuItems"
-          v-if="(
-            (
-              (item.meta.title != 'Kontrole')
-              && (item.meta.title != 'Pacijenti') 
-              && (item.meta.title != 'Opšte postavke')
-              && (item.meta.title != 'Postavke aparata')
-              && (item.meta.title != 'Definicija kontrola')
-              && (item.meta.title != 'Pomoć')
-              && (item.meta.title != 'Uzorci') 
-              && (item.meta.title != 'Rezultati')
-              && (item.meta.title != 'Assays')  
-              && (item.meta.title != 'Definicija testova')                    
-            )
-            || ($store.state.userId === 'admin@atom.ba')
+          v-show="(
+            ((item.meta.title != 'Kontrole') && (item.meta.title != 'Pacijenti')  && (item.meta.title != 'Opšte postavke')
+              && (item.meta.title != 'Postavke aparata') && (item.meta.title != 'Definicija kontrola') && (item.meta.title != 'Pomoć')
+              && (item.meta.title != 'Uzorci') && (item.meta.title != 'Rezultati') && (item.meta.title != 'Assays')  
+              && (item.meta.title != 'Definicija testova') && ($store.state.userId != 'admin@atom.ba') && ($store.state.userId != 'prijem')
+            ) 
+            || ($store.state.userId === 'admin@atom.ba') 
+            || ($store.state.userId === 'prijem' && item.meta.title === 'Prijem')
           )"
           :key="item.name"
         >
@@ -51,7 +45,7 @@
               <li
                 @click="setDropdownDefaultIzbor()"
                 v-for="childItem in item.children"
-                v-if="(                  
+                v-show="(                  
                   ($store.state.userId != 'admin@atom.ba' 
                     && (!(childItem.meta.title === 'Predračun' && item.meta.title === 'Uzorci')
                       && !(childItem.meta.title === 'Pregled' && item.meta.title === 'Rezultati')                      

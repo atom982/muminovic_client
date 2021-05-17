@@ -311,7 +311,15 @@ const store = new Vuex.Store({
               displayItems: res.data.data.displayItems,
               pid_bcode: res.data.data.pid_bcode
             });
-            router.push("/");
+
+            if(res.data.data.localId === "prijem"){
+              router.push("/prijem");
+
+            }else{
+              router.push("/");
+
+            }
+            
           } else {
             if (res.data.message === "Greška prilikom konekcije na DB.") {
               bus.$emit("UserLoginDB", res.data.message);
@@ -337,7 +345,14 @@ const store = new Vuex.Store({
         return;
       }
 
-      router.push("/");
+      if(userId === "prijem"){
+        router.push("/prijem");
+
+      }else{
+        router.push("/");
+
+      }
+
       commit("authUser", {
         userId: userId,
         language: language,
