@@ -5,8 +5,13 @@
         <div class="row">
           <div class="col-md-4">
             <vuestic-accordion-patient-info>
-              <vuestic-collapse-patient-info :godiste="starost" :cijena="ukupnaCijena">
-                <span slot="header">{{ patient.ime + ' ' + patient.prezime }}</span>
+              <vuestic-collapse-patient-info
+                :godiste="starost"
+                :cijena="ukupnaCijena"
+              >
+                <span slot="header">{{
+                  patient.ime + " " + patient.prezime
+                }}</span>
                 <div slot="body">
                   <!-- <div class="row">
                     <div class="col-md-12">
@@ -17,14 +22,14 @@
                   </div>-->
                 </div>
               </vuestic-collapse-patient-info>
-              <div style="min-height: 8px;"></div>
-            </vuestic-accordion-patient-info>&nbsp;
-            <a
-              style="color: #f7cc36;"
-              @click.prevent="viseUnos()"
-              href="#"
-            >{{'Unesite više detalja'}}</a>
-            <div style="min-height: 8px;"></div>
+              <div
+                style="min-height: 8px"
+              ></div> </vuestic-accordion-patient-info
+            >&nbsp;
+            <a style="color: #f7cc36" @click.prevent="viseUnos()" href="#">{{
+              "Unesite više detalja"
+            }}</a>
+            <div style="min-height: 8px"></div>
 
             <vuestic-modal-drugo-stanje
               :show.sync="show"
@@ -32,7 +37,7 @@
               :okText="potvrdi"
               :cancelText="odustani"
             >
-              <div slot="title">{{"VIŠE DETALJA"}}</div>
+              <div slot="title">{{ "VIŠE DETALJA" }}</div>
               <div>
                 <div class="form-group">
                   <div class="col-md-12 info-widget-inner">
@@ -95,8 +100,8 @@
                 <span :id="uzorak.tip" slot="header">{{ uzorak.ime }}</span>
                 <div slot="body">
                   <div class="vrow">
-                    <div class="col-md-12" style="padding-top: 0px;">
-                      <div class="collapse-page__content" style="padding: 5px;">
+                    <div class="col-md-12" style="padding-top: 0px">
+                      <div class="collapse-page__content" style="padding: 5px">
                         <div>
                           <vuestic-tag-group
                             :uzorak="uzorak.tip"
@@ -109,7 +114,7 @@
                   </div>
                 </div>
               </vuestic-collapse-samples-entry>
-              <div style="min-height: 8px;"></div>
+              <div style="min-height: 8px"></div>
             </vuestic-accordion-samples-entry>
           </div>
 
@@ -117,7 +122,9 @@
             <div class="vuestic-page-not-found-search">
               <div class="vuestic-page-not-found-search__content">
                 <div class="vuestic-page-not-found-search__wallpaper col-md-12">
-                  <div class="row vuestic-page-not-found-search__message">&nbsp;</div>
+                  <div class="row vuestic-page-not-found-search__message">
+                    &nbsp;
+                  </div>
                 </div>
 
                 <div class="row">
@@ -125,15 +132,24 @@
                   <div class="col-md-6">
                     <div class="vuestic-page-not-found-search__wallpaper">
                       <div class="form-group">
-                        <div class="input-group vuestic-page-not-found-search__input">
-                          <input placeholder="Pretraga" style="color: white" v-model="inputValue">
-                          <i class="bar" :style="'width: ' + 310 + 'px'"/>
+                        <div
+                          class="input-group vuestic-page-not-found-search__input"
+                        >
+                          <input
+                            placeholder="Pretraga"
+                            style="color: white"
+                            v-model="inputValue"
+                          />
+                          <i class="bar" :style="'width: ' + 310 + 'px'" />
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div v-if="kategorijeL.length > 7 && inputValue.length < 1" class="col-md-3">
-                    <br>
+                  <div
+                    v-if="kategorijeL.length > 7 && inputValue.length < 1"
+                    class="col-md-3"
+                  >
+                    <br />
                     <i
                       v-if="page === 1"
                       title="Naprijed"
@@ -158,7 +174,7 @@
                 >
                   <div
                     class="vuestic-page-not-found-search__wrapper"
-                    :style="{'grid-template-columns': rows}"
+                    :style="{ 'grid-template-columns': rows }"
                     v-if="page === 1 && inputValue.length < 1"
                   >
                     <ul
@@ -166,21 +182,31 @@
                       v-for="(category, index) in filterItems"
                       v-show="category.categoryName != 'z-HIDDEN' && index < 7"
                       :key="index"
-                      style="color: #f7cc36;"
+                      style="color: #f7cc36"
                     >
-                      {{ category.categoryName }}
+                      {{
+                        category.categoryName
+                      }}
                       <li
                         class="vuestic-page-not-found-search__list-element"
                         v-for="(item, index) in category.items"
                         :key="index"
                       >
                         <!-- v-if="index < 15" -->
-                        <vuestic-tooltip :options="{content: item.opis, placement: 'right'}">
+                        <vuestic-tooltip
+                          :options="{ content: item.opis, placement: 'right' }"
+                        >
                           <a
-                            @click.prevent="testEvent($event, category, item, item.cijena)"
-                            :class="{'unchosen-link': !item.izabran, 'plain-link': item.izabran}"
+                            @click.prevent="
+                              testEvent($event, category, item, item.cijena)
+                            "
+                            :class="{
+                              'unchosen-link': !item.izabran,
+                              'plain-link': item.izabran,
+                            }"
                             href="#"
-                          >{{item.itemName}}</a>
+                            >{{ item.itemName }}</a
+                          >
                         </vuestic-tooltip>
                       </li>
                     </ul>
@@ -188,7 +214,7 @@
 
                   <div
                     class="vuestic-page-not-found-search__wrapper"
-                    :style="{'grid-template-columns': rows}"
+                    :style="{ 'grid-template-columns': rows }"
                     v-if="page === 2 && inputValue.length < 1"
                   >
                     <ul
@@ -196,21 +222,31 @@
                       v-for="(category, index) in filterItems"
                       v-show="category.categoryName != 'z-HIDDEN' && index > 6"
                       :key="index"
-                      style="color: #f7cc36;"
+                      style="color: #f7cc36"
                     >
-                      {{ category.categoryName }}
+                      {{
+                        category.categoryName
+                      }}
                       <li
                         class="vuestic-page-not-found-search__list-element"
                         v-for="(item, index) in category.items"
                         :key="index"
                       >
                         <!-- v-if="index < 15" -->
-                        <vuestic-tooltip :options="{content: item.opis, placement: 'right'}">
+                        <vuestic-tooltip
+                          :options="{ content: item.opis, placement: 'right' }"
+                        >
                           <a
-                            @click.prevent="testEvent($event, category, item, item.cijena)"
-                            :class="{'unchosen-link': !item.izabran, 'plain-link': item.izabran}"
+                            @click.prevent="
+                              testEvent($event, category, item, item.cijena)
+                            "
+                            :class="{
+                              'unchosen-link': !item.izabran,
+                              'plain-link': item.izabran,
+                            }"
                             href="#"
-                          >{{item.itemName}}</a>
+                            >{{ item.itemName }}</a
+                          >
                         </vuestic-tooltip>
                       </li>
                     </ul>
@@ -218,7 +254,7 @@
 
                   <div
                     class="vuestic-page-not-found-search__wrapper"
-                    :style="{'grid-template-columns': rows}"
+                    :style="{ 'grid-template-columns': rows }"
                     v-if="inputValue.length > 0"
                   >
                     <ul
@@ -226,9 +262,11 @@
                       v-for="(categoryTmp, index) in filterItemsTmp"
                       v-show="categoryTmp.categoryName != 'z-HIDDEN'"
                       :key="index"
-                      style="color: #f7cc36;"
+                      style="color: #f7cc36"
                     >
-                      {{ categoryTmp.categoryName }}
+                      {{
+                        categoryTmp.categoryName
+                      }}
                       <li
                         class="vuestic-page-not-found-search__list-element"
                         v-for="(item, index) in categoryTmp.items"
@@ -236,12 +274,20 @@
                         v-show="index < 20"
                       >
                         <!-- v-if="index < 15" -->
-                        <vuestic-tooltip :options="{content: item.opis, placement: 'right'}">
+                        <vuestic-tooltip
+                          :options="{ content: item.opis, placement: 'right' }"
+                        >
                           <a
-                            @click.prevent="testEvent($event, categoryTmp, item, item.cijena)"
-                            :class="{'unchosen-link': !item.izabran, 'plain-link': item.izabran}"
+                            @click.prevent="
+                              testEvent($event, categoryTmp, item, item.cijena)
+                            "
+                            :class="{
+                              'unchosen-link': !item.izabran,
+                              'plain-link': item.izabran,
+                            }"
                             href="#"
-                          >{{item.itemName}}</a>
+                            >{{ item.itemName }}</a
+                          >
                         </vuestic-tooltip>
                       </li>
                     </ul>
@@ -250,21 +296,29 @@
               </div>
             </div>
 
-            <div style="position: sticky; margin-bottom: 10px;" class="row" v-if="loaded">
+            <div
+              style="position: sticky; margin-bottom: 10px"
+              class="row"
+              v-if="loaded"
+            >
               <div class="col-md-5"></div>
-              <div class="col-md-3 pull-left" style="margin-top:25px;">
+              <div class="col-md-3 pull-left" style="margin-top: 25px">
                 <button
                   @click.prevent="Discard()"
                   class="btn btn-warning btn-micro"
-                >{{ 'ODUSTANI' }}</button>
+                >
+                  {{ "ODUSTANI" }}
+                </button>
               </div>
-              <div class="col-md-4 pull-right" style="margin-top:25px;">
+              <div class="col-md-4 pull-right" style="margin-top: 25px">
                 <button
                   v-if="lokacija != ''"
                   @click.once="Save()"
                   class="btn btn-secondary btn-micro"
                   :disabled="save"
-                >{{ 'SAČUVAJ' }}</button>
+                >
+                  {{ "SAČUVAJ" }}
+                </button>
               </div>
             </div>
           </div>
@@ -277,7 +331,7 @@
         :vrijeme="vrijeme"
         ref="staticModalSamplesEntryCalendar"
       >
-        <div slot="title">{{'Vrijeme uzorkovanja'}}</div>
+        <div slot="title">{{ "Vrijeme uzorkovanja" }}</div>
       </vuestic-modal-samples-entry-calendar>
 
       <vuestic-modal-samples-entry-commenting
@@ -287,7 +341,7 @@
         :komentar="komentar"
         ref="staticModalSamplesEntryCommenting"
       >
-        <div slot="title">{{'Unos komentara'}}</div>
+        <div slot="title">{{ "Unos komentara" }}</div>
       </vuestic-modal-samples-entry-commenting>
     </div>
   </div>
@@ -321,7 +375,7 @@ export default {
         "",
         "Prvo tromjesečje",
         "Drugo tromjesečje",
-        "Treće tromjesečje"
+        "Treće tromjesečje",
       ],
       anticoag: "", // Antikoagulantna terapija
       anticoagTmp: "",
@@ -357,7 +411,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Serum",
@@ -373,7 +427,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Serum",
@@ -389,7 +443,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Serum",
@@ -405,7 +459,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Krv",
@@ -421,7 +475,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Krv",
@@ -437,7 +491,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Krv",
@@ -453,7 +507,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Plazma",
@@ -469,7 +523,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Plazma",
@@ -485,7 +539,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Plazma",
@@ -501,7 +555,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Plazma",
@@ -517,7 +571,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Plazma",
@@ -533,7 +587,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Urin",
@@ -549,7 +603,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Urin",
@@ -565,7 +619,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Feces",
@@ -581,7 +635,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Bris",
@@ -597,7 +651,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Bris",
@@ -613,7 +667,7 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
+          komentar: "",
         },
         {
           ime: "Bris",
@@ -629,12 +683,12 @@ export default {
             .toISOString()
             .slice(0, -8)
             .replace("T", " "),
-          komentar: ""
-        }
+          komentar: "",
+        },
       ],
       oldUzorciList: [],
       save: true,
-      loaded: false
+      loaded: false,
     };
   },
 
@@ -643,19 +697,19 @@ export default {
     filterItems() {
       if (this.inputValue.length >= 1) {
         return this.categories
-          .map(category => {
+          .map((category) => {
             return {
               categoryName: category.categoryName,
               bundle: category.bundle,
               items: category.items.filter(
-                item =>
+                (item) =>
                   item.itemName
                     .toUpperCase()
                     .search(this.inputValue.toUpperCase()) !== -1
-              )
+              ),
             };
           })
-          .filter(category => category.items.length >= 1);
+          .filter((category) => category.items.length >= 1);
       } else {
         return this.categories;
       }
@@ -663,35 +717,35 @@ export default {
     filterItemsTmp() {
       if (this.inputValue.length >= 1) {
         return this.categoriesTmp
-          .map(category => {
+          .map((category) => {
             return {
               categoryName: category.categoryName,
               bundle: category.bundle,
               items: category.items.filter(
-                item =>
+                (item) =>
                   item.itemName
                     .toUpperCase()
                     .search(this.inputValue.toUpperCase()) !== -1
-              )
+              ),
             };
           })
-          .filter(category => category.items.length >= 1);
+          .filter((category) => category.items.length >= 1);
       } else {
         return this.categoriesTmp;
       }
-    }
+    },
   },
 
   watch: {
-    ukupnaCijena: function() {
+    ukupnaCijena: function () {
       // console.log('Trenutna cijena: ' + this.ukupnaCijena)
     },
     uzorciList: {
-      handler: function(after, before) {
+      handler: function (after, before) {
         var vm = this;
 
-        let changed = after.filter(function(p, idx) {
-          return Object.keys(p).some(function(prop) {
+        let changed = after.filter(function (p, idx) {
+          return Object.keys(p).some(function (prop) {
             return p[prop] !== vm.$data.oldUzorciList[idx][prop];
           });
         });
@@ -699,7 +753,7 @@ export default {
         vm.setValue();
 
         var condition = false;
-        this.uzorciList.forEach(element => {
+        this.uzorciList.forEach((element) => {
           if (element.testovi.length) {
             condition = true;
           }
@@ -711,8 +765,8 @@ export default {
           this.save = true;
         }
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
 
   beforeRouteLeave(to, from, next) {
@@ -744,7 +798,7 @@ export default {
     bus.$on("removeTest", (data, uzorak) => {
       // console.log("removeTest")
       if (!data.bundle) {
-        this.uzorciList.forEach(element => {
+        this.uzorciList.forEach((element) => {
           if (element.tip === uzorak) {
             for (var i = 0; i < element.testovi.length; i++) {
               if (element.testovi[i].itemName === data.name) {
@@ -804,8 +858,8 @@ export default {
           }
         });
 
-        this.categories.forEach(element => {
-          element.items.forEach(item => {
+        this.categories.forEach((element) => {
+          element.items.forEach((item) => {
             if (item.itemName === data.name) {
               this.ukupnaCijena = this.ukupnaCijena - Number(item.cijena);
               item.izabran = false;
@@ -813,15 +867,15 @@ export default {
           });
         });
 
-        this.categoriesTmp.forEach(element => {
-          element.items.forEach(item => {
+        this.categoriesTmp.forEach((element) => {
+          element.items.forEach((item) => {
             if (item.itemName === data.name) {
               item.izabran = false;
             }
           });
         });
       } else {
-        this.uzorciList.forEach(element => {
+        this.uzorciList.forEach((element) => {
           if (element.tip === uzorak) {
             for (var i = 0; i < element.testovi.length; i++) {
               if (element.testovi[i].itemName === data.name) {
@@ -879,10 +933,10 @@ export default {
 
         var uslov = true;
 
-        this.categories.forEach(element => {
-          element.items.forEach(item => {
+        this.categories.forEach((element) => {
+          element.items.forEach((item) => {
             if (element.bundle) {
-              item.testovi.forEach(test => {
+              item.testovi.forEach((test) => {
                 if (test.itemName === data.name) {
                   if (uslov) {
                     this.ukupnaCijena = this.ukupnaCijena - Number(test.cijena);
@@ -897,10 +951,10 @@ export default {
           });
         });
 
-        this.categoriesTmp.forEach(element => {
-          element.items.forEach(item => {
+        this.categoriesTmp.forEach((element) => {
+          element.items.forEach((item) => {
             if (element.bundle) {
-              item.testovi.forEach(test => {
+              item.testovi.forEach((test) => {
                 if (test.itemName === data.name) {
                   if (uslov) {
                     uslov = false;
@@ -914,16 +968,16 @@ export default {
           });
         });
 
-        this.categories.forEach(cat => {
-          cat.items.forEach(it => {
+        this.categories.forEach((cat) => {
+          cat.items.forEach((it) => {
             if (it.itemName === data.name) {
               it.izabran = false;
             }
           });
         });
 
-        this.categoriesTmp.forEach(cat => {
-          cat.items.forEach(it => {
+        this.categoriesTmp.forEach((cat) => {
+          cat.items.forEach((it) => {
             if (it.itemName === data.name) {
               it.izabran = false;
             }
@@ -932,13 +986,13 @@ export default {
       }
     });
 
-    bus.$on("SamplesEntryRemove", data => {
+    bus.$on("SamplesEntryRemove", (data) => {
       // console.log("SamplesEntryRemove")
-      this.uzorciList.forEach(element => {
+      this.uzorciList.forEach((element) => {
         if (element.tip === data) {
-          element.testovi.forEach(tst => {
-            this.categories.forEach(ctgelement => {
-              ctgelement.items.forEach(item => {
+          element.testovi.forEach((tst) => {
+            this.categories.forEach((ctgelement) => {
+              ctgelement.items.forEach((item) => {
                 // console.log(tst.itemName)
                 if (item.itemName === tst.itemName) {
                   this.ukupnaCijena = this.ukupnaCijena - Number(tst.cijena);
@@ -946,8 +1000,8 @@ export default {
               });
             });
 
-            this.categoriesTmp.forEach(ctgelement => {
-              ctgelement.items.forEach(item => {
+            this.categoriesTmp.forEach((ctgelement) => {
+              ctgelement.items.forEach((item) => {
                 if (item.itemName === tst.itemName) {
                 }
               });
@@ -965,14 +1019,14 @@ export default {
         }
       });
 
-      this.categories.forEach(element => {
-        element.items.forEach(item => {
+      this.categories.forEach((element) => {
+        element.items.forEach((item) => {
           if (item.uzorak === data) {
             item.izabran = false;
           }
 
           if (item.testovi != undefined) {
-            item.testovi.forEach(test => {
+            item.testovi.forEach((test) => {
               if (test.uzorak === data) {
                 item.izabran = false;
                 test.izabran = false;
@@ -982,14 +1036,14 @@ export default {
         });
       });
 
-      this.categoriesTmp.forEach(element => {
-        element.items.forEach(item => {
+      this.categoriesTmp.forEach((element) => {
+        element.items.forEach((item) => {
           if (item.uzorak === data) {
             item.izabran = false;
           }
 
           if (item.testovi != undefined) {
-            item.testovi.forEach(test => {
+            item.testovi.forEach((test) => {
               if (test.uzorak === data) {
                 item.izabran = false;
                 test.izabran = false;
@@ -1015,7 +1069,7 @@ export default {
     });
 
     bus.$on("setComment", (data, comment) => {
-      this.uzorciList.forEach(element => {
+      this.uzorciList.forEach((element) => {
         if (element.tip === data) {
           element.komentar = comment;
         }
@@ -1030,30 +1084,30 @@ export default {
     });
 
     bus.$on("setCalendar", (data, time) => {
-      this.uzorciList.forEach(element => {
+      this.uzorciList.forEach((element) => {
         if (element.tip === data) {
           element.time = time;
         }
       });
     });
 
-    bus.$on("SamplesEntryUrgent", data => {
-      this.uzorciList.forEach(element => {
+    bus.$on("SamplesEntryUrgent", (data) => {
+      this.uzorciList.forEach((element) => {
         if (element.tip === data) {
           element.hitno = true;
         }
       });
     });
 
-    bus.$on("SamplesEntryRemoveUrgent", data => {
-      this.uzorciList.forEach(element => {
+    bus.$on("SamplesEntryRemoveUrgent", (data) => {
+      this.uzorciList.forEach((element) => {
         if (element.tip === data) {
           element.hitno = false;
         }
       });
     });
 
-    bus.$on("headerKlik", data => {
+    bus.$on("headerKlik", (data) => {
       document.getElementById(data).click();
       setTimeout(() => {
         document.getElementById(data).click();
@@ -1072,11 +1126,11 @@ export default {
           this.$store.state.site,
         {}
       )
-      .then(res => {
+      .then((res) => {
         var str = "";
         var tmp = "";
 
-        this.uzorciList.forEach(element => {
+        this.uzorciList.forEach((element) => {
           element.patient = res.data.pacijent;
           this.patient = res.data.pacijent;
 
@@ -1094,15 +1148,15 @@ export default {
           this.starost = jmbgGodina;
         });
       })
-      .then(res => {
+      .then((res) => {
         this.spol = this.patient.spol;
         // console.warn(this.spol);
       });
     http
       .post("/postavke/sajtovi/" + this.$store.state.site, {
-        token: this.$store.state.token
+        token: this.$store.state.token,
       })
-      .then(res => {
+      .then((res) => {
         this.siteCode = res.data.sajt.sifra;
       });
   },
@@ -1116,11 +1170,11 @@ export default {
           this.$store.state.site,
         {}
       ) // Korak 1 - Izaberite lokaciju
-      .then(res => {
+      .then((res) => {
         if (res.data.lokacije.length != 0) {
           this.locations = res.data.lokacije;
           this.lokacije = [];
-          res.data.lokacije.forEach(element => {
+          res.data.lokacije.forEach((element) => {
             this.lokacije.push(element.lokacija);
             this.lokacijeInit.push(element);
           });
@@ -1134,9 +1188,9 @@ export default {
     http
       .post("/labassays", {
         site: this.$store.state.site,
-        token: this.$store.state.token
+        token: this.$store.state.token,
       })
-      .then(res => {
+      .then((res) => {
         var i = 0;
         var kategorije = [];
 
@@ -1145,31 +1199,31 @@ export default {
         if (this.$store.state.site === "5bc71402bf21a379083d6e07") {
           // Med Lab, $store.state.site: 5bc71402bf21a379083d6e07
 
-          res.data.testovi = res.data.testovi.sort(function(a, b) {
+          res.data.testovi = res.data.testovi.sort(function (a, b) {
             return (
               a.entryorder.localeCompare(b.entryorder, undefined, {
                 numeric: true,
-                sensitivity: "base"
+                sensitivity: "base",
               }) ||
               a.naziv.localeCompare(b.naziv, undefined, {
                 numeric: true,
-                sensitivity: "base"
+                sensitivity: "base",
               })
             );
           });
         } else {
-          res.data.testovi = res.data.testovi.sort(function(a, b) {
+          res.data.testovi = res.data.testovi.sort(function (a, b) {
             return a.naziv.localeCompare(b.naziv, undefined, {
               numeric: true,
-              sensitivity: "base"
+              sensitivity: "base",
             });
           });
         }
 
-        res.data.testovi.forEach(element => {
+        res.data.testovi.forEach((element) => {
           if (
             !kategorije.filter(
-              kategorija =>
+              (kategorija) =>
                 kategorija === element.kategorija.split("|")[0].trim()
             ).length > 0
           ) {
@@ -1177,10 +1231,10 @@ export default {
           }
         });
 
-        res.data.testovi.forEach(element => {
+        res.data.testovi.forEach((element) => {
           if (
             !kategorijeTmp.filter(
-              kategorija =>
+              (kategorija) =>
                 kategorija === element.kategorija.split("|")[0].trim()
             ).length > 0
           ) {
@@ -1191,13 +1245,13 @@ export default {
         var temporaryCategory = {};
         var temporaryCategoryTmp = {};
 
-        kategorije.forEach(kategorija => {
+        kategorije.forEach((kategorija) => {
           temporaryCategory = {};
           temporaryCategory.categoryName = kategorija;
           temporaryCategory.bundle = false;
           temporaryCategory.items = [];
 
-          res.data.testovi.forEach(element => {
+          res.data.testovi.forEach((element) => {
             if (element.kategorija.split("|")[0].trim() === kategorija) {
               if (kategorija === "Specifične") {
                 temporaryCategory.bundle = true;
@@ -1221,7 +1275,7 @@ export default {
                     opis: element.kategorija.split("|")[2].trim(),
                     cijena: element.price,
                     izabran: false,
-                    testovi: element.bundledTests
+                    testovi: element.bundledTests,
                   });
                 } else {
                   if (
@@ -1237,7 +1291,7 @@ export default {
                       opis: element.kategorija.split("|")[2].trim(),
                       cijena: element.price,
                       izabran: false,
-                      testovi: element.bundledTests
+                      testovi: element.bundledTests,
                     });
                   }
                 }
@@ -1251,7 +1305,7 @@ export default {
                   opis: element.analit,
                   cijena: element.price,
                   izabran: false,
-                  testovi: element.bundledTests
+                  testovi: element.bundledTests,
                 });
               } else {
                 if (
@@ -1271,7 +1325,7 @@ export default {
                     cijena: element.price,
                     uzorak: element.tip,
                     izabran: false,
-                    klasa: "primary"
+                    klasa: "primary",
                   });
                 } else {
                   temporaryCategory.items.push({
@@ -1282,7 +1336,7 @@ export default {
                     cijena: element.price,
                     uzorak: element.tip,
                     izabran: false,
-                    klasa: "primary"
+                    klasa: "primary",
                   });
                 }
               }
@@ -1291,13 +1345,13 @@ export default {
           this.categories.push(temporaryCategory);
         });
 
-        kategorijeTmp.forEach(kategorija => {
+        kategorijeTmp.forEach((kategorija) => {
           temporaryCategoryTmp = {};
           temporaryCategoryTmp.categoryName = kategorija;
           temporaryCategoryTmp.bundle = false;
           temporaryCategoryTmp.items = [];
 
-          res.data.testovi.forEach(element => {
+          res.data.testovi.forEach((element) => {
             if (element.kategorija.split("|")[0].trim() === kategorija) {
               if (kategorija === "Specifične") {
                 temporaryCategoryTmp.bundle = true;
@@ -1321,7 +1375,7 @@ export default {
                     opis: element.kategorija.split("|")[2].trim(),
                     cijena: element.price,
                     izabran: false,
-                    testovi: element.bundledTests
+                    testovi: element.bundledTests,
                   });
                 } else {
                   if (
@@ -1337,7 +1391,7 @@ export default {
                       opis: element.kategorija.split("|")[2].trim(),
                       cijena: element.price,
                       izabran: false,
-                      testovi: element.bundledTests
+                      testovi: element.bundledTests,
                     });
                   }
                 }
@@ -1351,7 +1405,7 @@ export default {
                   opis: element.analit,
                   cijena: element.price,
                   izabran: false,
-                  testovi: element.bundledTests
+                  testovi: element.bundledTests,
                 });
               } else {
                 if (temporaryCategoryTmp.items.length === 70) {
@@ -1368,7 +1422,7 @@ export default {
                     cijena: element.price,
                     uzorak: element.tip,
                     izabran: false,
-                    klasa: "primary"
+                    klasa: "primary",
                   });
                 } else {
                   temporaryCategoryTmp.items.push({
@@ -1379,7 +1433,7 @@ export default {
                     cijena: element.price,
                     uzorak: element.tip,
                     izabran: false,
-                    klasa: "primary"
+                    klasa: "primary",
                   });
                 }
               }
@@ -1388,10 +1442,10 @@ export default {
           this.categoriesTmp.push(temporaryCategoryTmp);
         });
       })
-      .then(res => {
+      .then((res) => {
         this.loaded = true;
 
-        this.categories.forEach(element => {
+        this.categories.forEach((element) => {
           this.kategorijeL.push(element.categoryName);
         });
 
@@ -1403,67 +1457,67 @@ export default {
 
         this.uniqueArray = [...new Set(this.kategorijeL)];
 
-        this.categories = this.categories.sort(function(a, b) {
+        this.categories = this.categories.sort(function (a, b) {
           return a.categoryName.localeCompare(b.categoryName, undefined, {
             numeric: true,
-            sensitivity: "base"
+            sensitivity: "base",
           });
         });
 
-        this.categoriesTmp = this.categoriesTmp.sort(function(a, b) {
+        this.categoriesTmp = this.categoriesTmp.sort(function (a, b) {
           return a.categoryName.localeCompare(b.categoryName, undefined, {
             numeric: true,
-            sensitivity: "base"
+            sensitivity: "base",
           });
         });
 
         if (this.$store.state.site === "5bc71402bf21a379083d6e07") {
           // Med Lab, $store.state.site: 5bc71402bf21a379083d6e07
 
-          this.categories.forEach(element => {
-            element.items = element.items.sort(function(a, b) {
+          this.categories.forEach((element) => {
+            element.items = element.items.sort(function (a, b) {
               return (
                 a.entryorder.localeCompare(b.entryorder, undefined, {
                   numeric: true,
-                  sensitivity: "base"
+                  sensitivity: "base",
                 }) ||
                 a.itemName.localeCompare(b.itemName, undefined, {
                   numeric: true,
-                  sensitivity: "base"
+                  sensitivity: "base",
                 })
               );
             });
           });
 
-          this.categoriesTmp.forEach(element => {
-            element.items = element.items.sort(function(a, b) {
+          this.categoriesTmp.forEach((element) => {
+            element.items = element.items.sort(function (a, b) {
               return (
                 a.entryorder.localeCompare(b.entryorder, undefined, {
                   numeric: true,
-                  sensitivity: "base"
+                  sensitivity: "base",
                 }) ||
                 a.itemName.localeCompare(b.itemName, undefined, {
                   numeric: true,
-                  sensitivity: "base"
+                  sensitivity: "base",
                 })
               );
             });
           });
         } else {
-          this.categories.forEach(element => {
-            element.items = element.items.sort(function(a, b) {
+          this.categories.forEach((element) => {
+            element.items = element.items.sort(function (a, b) {
               return a.itemName.localeCompare(b.itemName, undefined, {
                 numeric: true,
-                sensitivity: "base"
+                sensitivity: "base",
               });
             });
           });
 
-          this.categoriesTmp.forEach(element => {
-            element.items = element.items.sort(function(a, b) {
+          this.categoriesTmp.forEach((element) => {
+            element.items = element.items.sort(function (a, b) {
               return a.itemName.localeCompare(b.itemName, undefined, {
                 numeric: true,
-                sensitivity: "base"
+                sensitivity: "base",
               });
             });
           });
@@ -1493,8 +1547,8 @@ export default {
           var test = {};
           var tag = {};
 
-          this.uzorciList.forEach(element => {
-            item.testovi.forEach(analiza => {
+          this.uzorciList.forEach((element) => {
+            item.testovi.forEach((analiza) => {
               test = {};
               tag = {};
               if (element.tip === analiza.uzorak) {
@@ -1513,7 +1567,7 @@ export default {
                 tag.bundle = category.bundle;
 
                 if (
-                  !element.testovi.filter(el => el.itemName === test.itemName)
+                  !element.testovi.filter((el) => el.itemName === test.itemName)
                     .length > 0
                 ) {
                   element.testovi.push(test);
@@ -1536,16 +1590,16 @@ export default {
 
                   this.ukupnaCijena = this.ukupnaCijena + Number(test.cijena);
 
-                  this.categories.forEach(cat => {
-                    cat.items.forEach(it => {
+                  this.categories.forEach((cat) => {
+                    cat.items.forEach((it) => {
                       if (it.itemName === analiza.itemName) {
                         it.izabran = true;
                       }
                     });
                   });
 
-                  this.categoriesTmp.forEach(catTmp => {
-                    catTmp.items.forEach(itTmp => {
+                  this.categoriesTmp.forEach((catTmp) => {
+                    catTmp.items.forEach((itTmp) => {
                       if (itTmp.itemName === analiza.itemName) {
                         itTmp.izabran = true;
                       }
@@ -1561,7 +1615,7 @@ export default {
         default:
           var test = {};
           var tag = {};
-          this.uzorciList.forEach(element => {
+          this.uzorciList.forEach((element) => {
             test = {};
             tag = {};
             if (element.tip === item.uzorak) {
@@ -1577,7 +1631,7 @@ export default {
               tag.bundle = category.bundle;
 
               if (
-                !element.testovi.filter(el => el.itemName === test.itemName)
+                !element.testovi.filter((el) => el.itemName === test.itemName)
                   .length > 0
               ) {
                 element.testovi.push(test);
@@ -1607,16 +1661,16 @@ export default {
             }
           });
 
-          this.categories.forEach(cat => {
-            cat.items.forEach(it => {
+          this.categories.forEach((cat) => {
+            cat.items.forEach((it) => {
               if (it.itemName === item.itemName) {
                 it.izabran = true;
               }
             });
           });
 
-          this.categoriesTmp.forEach(catTmp => {
-            catTmp.items.forEach(itTmp => {
+          this.categoriesTmp.forEach((catTmp) => {
+            catTmp.items.forEach((itTmp) => {
               if (itTmp.itemName === item.itemName) {
                 itTmp.izabran = true;
               }
@@ -1644,11 +1698,11 @@ export default {
       var lokacijaID = "";
       this.timestamp = new Date().getTime().toString();
 
-      this.uzorciList = this.uzorciList.filter(function(uzorak) {
+      this.uzorciList = this.uzorciList.filter(function (uzorak) {
         return uzorak.testovi.length;
       });
 
-      this.lokacijeInit.forEach(element => {
+      this.lokacijeInit.forEach((element) => {
         if (element.lokacija === this.lokacija) {
           lokacijaID = element._id;
         }
@@ -1671,9 +1725,9 @@ export default {
           uzorci: this.uzorciList,
           lokacija: lokacijaID,
           drstanje: this.drstanje,
-          anticoag: this.anticoag
+          anticoag: this.anticoag,
         })
-        .then(res => {
+        .then((res) => {
           var datum = "";
           var temp = [];
           var response = {};
@@ -1681,12 +1735,11 @@ export default {
 
           response = res.data.data[0];
 
-          res.data.data.forEach(element => {
+          res.data.data.forEach((element) => {
             samplesList.push(element.sid);
           });
 
-          res.data.data.forEach(element => {
-
+          res.data.data.forEach((element) => {
             temp = element.datum.split("-");
             datum =
               temp[2].substring(0, 2) +
@@ -1699,28 +1752,21 @@ export default {
 
             // var datRodjenja = element.jmbg.substring(0, 2) + "." + element.jmbg.substring(2, 4) + "." + element.godiste + '.'
 
-            if(element.code === "Korona virus"){
-
-                [1,2,3].forEach(function(i) {
-
-                  printEPL(
-                    element.patient,
-                    element.sid,
-                    element.pid,
-                    element.godiste,
-                    datum,
-                    element.link,
-                    element.code,
-                    "5bd40c16020d6d21bbaf610c", // PZU Muminović, $store.state.site: 5bd40c16020d6d21bbaf610c
-                    element.jmbg,
-                  ) 
-
-                });
-
-                
-
-            }else{
-
+            if (element.code === "Korona virus") {
+              [1, 2, 3].forEach(function (i) {
+                printEPL(
+                  element.patient,
+                  element.sid,
+                  element.pid,
+                  element.godiste,
+                  datum,
+                  element.link,
+                  element.code,
+                  "5bd40c16020d6d21bbaf610c", // PZU Muminović, $store.state.site: 5bd40c16020d6d21bbaf610c
+                  element.jmbg
+                );
+              });
+            } else {
               printEPL(
                 element.patient,
                 element.sid,
@@ -1730,11 +1776,39 @@ export default {
                 element.link,
                 element.code,
                 "5bd40c16020d6d21bbaf610c", // PZU Muminović, $store.state.site: 5bd40c16020d6d21bbaf610c
-                element.jmbg,
-              ) 
-
+                element.jmbg
+              );
             }
           });
+
+          // Dodatne naljepnice (4 komada)
+
+          [1, 2, 3, 4].forEach(function (i) {
+            temp = res.data.data[0].datum.split("-");
+            datum =
+              temp[2].substring(0, 2) +
+              "." +
+              temp[1] +
+              "." +
+              temp[0].substring(2, 4) +
+              " " +
+              temp[2].substring(3, 8);
+            
+            // console.log(res.data.data[0]);
+
+            printEPL(
+              res.data.data[0].patient,
+              res.data.data[0].sid,
+              res.data.data[0].pid,
+              res.data.data[0].godiste,
+              datum,
+              res.data.data[0].link,
+              res.data.data[0].code,
+              "5bd40c16020d6d21bbaf610c", // PZU Muminović, $store.state.site: 5bd40c16020d6d21bbaf610c
+              res.data.data[0].jmbg
+            );
+          });
+
           router.push("/pacijenti/pregled/");
         });
     },
@@ -1743,8 +1817,8 @@ export default {
     },
     setValue() {
       this.$data.oldUzorciList = _.cloneDeep(this.$data.uzorciList);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -1793,7 +1867,7 @@ $colors-map: (
   brand-warning: $brand-warning,
   black: black,
   white: white,
-  lighter-gray: $lighter-gray
+  lighter-gray: $lighter-gray,
 );
 
 $theme-colors: (
@@ -1805,7 +1879,7 @@ $theme-colors: (
   "danger": $brand-danger,
   "light": $light-gray2,
   "dark": $almost-black,
-  "pale": $theme-pale
+  "pale": $theme-pale,
 );
 // Layout //
 $body-bg: $light-gray;
