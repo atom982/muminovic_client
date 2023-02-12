@@ -13,16 +13,16 @@
 
       <div class="row">
         <span style="color: #e34a4a">{{ "" }}</span>
-        <span style="font-size: 17px; color: #282828">{{
-          "Telefon: +387 61/339-991"
-        }}</span>
+        <span style="font-size: 17px; color: #282828"
+          >{{ "Telefon: " }} <b>{{ support }}</b>
+        </span>
       </div>
 
       <div class="row">
         <span style="color: #e34a4a">{{ "" }}</span>
-        <span style="font-size: 17px; color: #282828">{{
-          "E-mail: atom.podrska@gmail.com"
-        }}</span>
+        <span style="font-size: 17px; color: #282828"
+          >{{ "E-mail: " }} <b>{{ "atom.podrska@gmail.com" }}</b>
+        </span>
       </div>
     </div>
   </div>
@@ -39,9 +39,24 @@ export default {
   components: {},
 
   data() {
-    return {};
+    return {
+      support: "Nema podataka",
+    };
   },
-  created() {},
+  created() {
+    // Settings - Podrška korisnicima
+    http
+      .get(
+        "assays/settings?token=" +
+          this.$store.state.token +
+          "&site=" +
+          this.$store.state.site,
+        {}
+      )
+      .then((res) => {
+        this.support = res.data.settings[0].support;
+      });
+  },
   methods: {},
 };
 </script>
