@@ -1781,9 +1781,9 @@ export default {
             }
           });
 
-          // Dodatne naljepnice (4 komada)
+          // Dodatne naljepnice (2 komada)
 
-          [1, 2, 3, 4].forEach(function (i) {
+          [1, 2].forEach(function (i) {
             temp = res.data.data[0].datum.split("-");
             datum =
               temp[2].substring(0, 2) +
