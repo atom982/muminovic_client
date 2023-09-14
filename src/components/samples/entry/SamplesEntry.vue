@@ -462,6 +462,22 @@ export default {
           komentar: "",
         },
         {
+          ime: "Serum",
+          code: ["Gluk-Teren"],
+          tip: "Serum 5",
+          patient: {},
+          testovi: [],
+          testoviTag: [],
+          hitno: false,
+          time: new Date(
+            new Date().getTime() - new Date().getTimezoneOffset() * 60000
+          )
+            .toISOString()
+            .slice(0, -8)
+            .replace("T", " "),
+          komentar: "",
+        },
+        {
           ime: "Krv",
           code: [],
           tip: "Krv 1",
