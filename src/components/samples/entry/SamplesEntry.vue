@@ -478,6 +478,38 @@ export default {
           komentar: "",
         },
         {
+          ime: "Serum",
+          code: ["60 m-Teren"],
+          tip: "Serum 6",
+          patient: {},
+          testovi: [],
+          testoviTag: [],
+          hitno: false,
+          time: new Date(
+            new Date().getTime() - new Date().getTimezoneOffset() * 60000
+          )
+            .toISOString()
+            .slice(0, -8)
+            .replace("T", " "),
+          komentar: "",
+        },
+        {
+          ime: "Serum",
+          code: ["120 m-Teren"],
+          tip: "Serum 7",
+          patient: {},
+          testovi: [],
+          testoviTag: [],
+          hitno: false,
+          time: new Date(
+            new Date().getTime() - new Date().getTimezoneOffset() * 60000
+          )
+            .toISOString()
+            .slice(0, -8)
+            .replace("T", " "),
+          komentar: "",
+        },
+        {
           ime: "Krv",
           code: [],
           tip: "Krv 1",
