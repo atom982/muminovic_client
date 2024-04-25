@@ -1,7 +1,12 @@
 <template>
   <div class="login">
+
+ 
+
     <div v-if="true">
-      <h2>{{'Poliklinika Muminović'}}</h2> <!-- Dobrodošli! -->
+      <img :src="wellcome" style="width: auto" />
+      <br />
+      <!-- <h2>{{'Poliklinika Muminović'}}</h2>  -->
       <form @submit.prevent='onSubmit' name="login">
         <div class="form-group">
           <div class="input-group">
@@ -48,6 +53,7 @@
         locale: 'ba',
         email: '',
         password: '',
+        wellcome: "/static/Wellcome.jpg",
         browser: 'Chrome',
 
         toastText: '',
