@@ -3157,9 +3157,10 @@ export default {
                     if (this.lokacija.sendEmail) {
                       document.getElementById(this.lokacija.email).click();
                     }
+                    console.log("POST na Viber prije")
                     if (this.lokacija.sendSMS) {
                       //pozovi viber ruta u odobravanje.js medlaba i kopirati oboravanje kontroel funkciju sendSMS
-
+                    console.log("POST na Viber")
                     http
                     .post("nalazi/viber", {
                       token: this.$store.state.token,
