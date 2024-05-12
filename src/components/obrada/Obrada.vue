@@ -989,6 +989,7 @@ export default {
           }
 
           this.email_tmp = res.data.results[0].patient.email.trim();
+          this.smsData=res.data.results[0].patient;
 
           if (!this.Email(this.email)) {
             this.email = "";
@@ -3156,7 +3157,27 @@ export default {
                     if (this.lokacija.sendEmail) {
                       document.getElementById(this.lokacija.email).click();
                     }
+                    if (this.lokacija.sendSMS) {
+                      //pozovi viber ruta u odobravanje.js medlaba i kopirati oboravanje kontroel funkciju sendSMS
 
+                    http
+                    .post("nalazi/viber", {
+                      token: this.$store.state.token,
+                      site: this.$store.state.site,
+                      timestamp: this.timestamp,
+                      smsData: this.smsData,
+                      location: "/",
+                    })
+                    .then((response) => {
+                      // console.log(response);
+                      if (response.data.success) {
+                        // Success
+                      } else {
+                        // Greška
+                      }
+                    });
+
+                    }
                     // if (this.lokacija.sendEmail && !res.data.IgE) {
                     //   // console.log('Auto Mail Sender: ' + true)
                     //   http
