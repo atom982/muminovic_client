@@ -275,8 +275,28 @@ module.exports = {
         ];
         break;
 
-        case 'eGFR': // Granični interval
-        return [test, rezultat, interpretacija.granicniIntervalVeceOd(rezultat, jedinica, dref, gref)[0], jedinica, ' ≥ ' + gref.replace('-', ''), interpretacija.granicniIntervalVeceOd(rezultat, jedinica, dref, gref)[1]]
+        case "eGFR": // Granični interval
+
+        console.log("Front: eGFR")
+        
+        return [
+          test,
+          rezultat,
+          interpretacija.granicniIntervalVeceOd(
+            rezultat,
+            jedinica,
+            dref,
+            gref
+          )[0],
+          jedinica,
+          " ≥ " + gref.replace("-", ""),
+          interpretacija.granicniIntervalVeceOd(
+            rezultat,
+            jedinica,
+            dref,
+            gref
+          )[1]
+        ];
         break;
         
         case "PSA ratio": // Granični interval
