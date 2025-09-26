@@ -113,7 +113,7 @@ module.exports = {
         ];
         break;
 
-      case "ANA Screen": // Nije broj
+      case "ANA/ENA - 26 At": // Nije broj
         return [
           test,
           rezultat,
@@ -123,7 +123,7 @@ module.exports = {
           interpretacija.nijeBrojNegativan(rezultat, jedinica, dref, gref)[1]
         ];
         break;
-      case "ENA Screen": // Nije broj
+      case "ANA/ENA - 9 At": // Nije broj
         return [
           test,
           rezultat,
@@ -133,7 +133,7 @@ module.exports = {
           interpretacija.nijeBrojNegativan(rezultat, jedinica, dref, gref)[1]
         ];
         break;
-      case "Anti ds DNA Screen": // Nije broj
+      /* case "Anti ds DNA Screen": // Nije broj
         return [
           test,
           rezultat,
@@ -142,7 +142,7 @@ module.exports = {
           "negativan",
           interpretacija.nijeBrojNegativan(rezultat, jedinica, dref, gref)[1]
         ];
-        break;
+        break; */
       case "Anti DGP IgA": // Nije broj
         return [
           test,

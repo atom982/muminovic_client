@@ -42,7 +42,11 @@ let rez = {
   IgE: ["", "nereaktivan", "reaktivan"], // IgE
   ANA: ["", "negativan", "pozitivan"], // ANA Screen
   ENA: ["", "negativan", "pozitivan"], // ENA Screen
-  Anti_dsDNA: ["", "negativan", "pozitivan"], // Anti ds DNA Screen
+
+  ANA_ENA_26 : ["", "negativan", "slabo pozitivan", "pozitivan"], // ANA/ENA 26
+  ANA_ENA_9: ["", "negativan", "slabo pozitivan", "pozitivan"], // ANA/ENA 9
+
+  // Anti_dsDNA: ["", "negativan", "pozitivan"], // Anti ds DNA Screen
   DGP_IgA: ["", "negativan", "pozitivan"], // Anti DGP IgA
   DGP_IgG: ["", "negativan", "pozitivan"], // Anti DGP IgG
   Glijadin_IgA: ["", "negativan", "pozitivan"], // Anti Gliadin IgA
